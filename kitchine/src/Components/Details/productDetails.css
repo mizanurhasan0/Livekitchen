@@ -1,0 +1,12 @@
+.activeBuyImage {
+  border: 3px solid #498cff;
+}
+
+.deActiveBuyImage {
+  border: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
