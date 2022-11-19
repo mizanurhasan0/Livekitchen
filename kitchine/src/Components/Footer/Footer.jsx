@@ -13,7 +13,7 @@ import { FooterInfo } from "../Shares/StaticData";
 const Footer = () => {
   return (
     <div className="my-10 font-Lato container">
-      <div className="border-2 border-primary flex justify-end ">
+      <div className="flex justify-end border-b-2 border-primary">
         <span className="flex items-center text-primary">
           <AiFillTwitterSquare className="w-10 h-10 " />
           <AiFillFacebook className="w-10 h-10 " />

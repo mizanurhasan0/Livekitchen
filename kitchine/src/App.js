@@ -4,7 +4,7 @@ import RoutingCon from "./Layout/Routing/RoutingCon";
 
 function App() {
   return (
-    <div className="App bg-bg">
+    <div className=" bg-bg">
       <Navbar />
       <RoutingCon />
       <Footer />

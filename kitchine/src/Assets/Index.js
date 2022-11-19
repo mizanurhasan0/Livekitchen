@@ -11,6 +11,8 @@ const rack2=require("./productImg/rack2.jpg")
 const rack3=require("./productImg/rack3.jpg")
 // 
 const knif1=require("./productImg/knif1.jpg")
+
+const banner4 =require ("./banner4.jpg")
 export {
- oil1,oil2,oil3,gloves1,gloves2,gloves3,rack1,rack2,rack3,knif1
+ oil1,oil2,oil3,gloves1,gloves2,gloves3,rack1,rack2,rack3,knif1,banner4
 };

@@ -6,7 +6,7 @@ import NewSugPro from "../Components/New&SugPro/NewSugPro";
 
 export const ProductDetail = () => {
   return (
-    <div className="pt-16 ">
+    <div className="container pt-16 ">
       <ProductInfo />
       {/*  footer */}
 

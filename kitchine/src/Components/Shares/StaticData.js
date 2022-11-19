@@ -1,4 +1,4 @@
-import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineMail, AiOutlinePhone,AiOutlineShopping } from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 import { GiChickenOven } from "react-icons/gi";
 import { MdOutlineBlender } from "react-icons/md";
@@ -24,7 +24,6 @@ let NavItems = [
   { name: "HOME", link: "/" },
   { name: "Shops", link: "/shops" },
   { name: "ABOUT", link: "/" },
-  { name: "BLOG'S", link: "/" },
   { name: "CONTACT", link: "/" },
 ];
 

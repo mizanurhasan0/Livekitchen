@@ -4,7 +4,7 @@ const ProductSpec = () => {
   const [toggleState, setToggleState] = useState(1);
   // console.log(ProductsData[0]);
   return (
-    <div className="py-10 mx-auto justify-items-center max-w-7xl">
+    <div className="py-10 ">
       <div className="">
         <div className="flex text-gray-500 font-bold">
           <button

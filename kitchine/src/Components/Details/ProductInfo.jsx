@@ -28,7 +28,7 @@ export const ProductInfo = () => {
   };
 
   return (
-    <div className=" justify-items-center max-w-7xl mx-auto mb-10 ">
+    <div className=" mb-10 ">
       <div className="md:grid grid-cols-5 gap-5 text-center md:text-start space-y-5">
         {/* mx-[80px] */}
         <div className="col-span-3 grid grid-rows-6 h-[30rem] ">
