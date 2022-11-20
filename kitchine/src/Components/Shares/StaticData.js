@@ -4,9 +4,7 @@ import { GiChickenOven } from "react-icons/gi";
 import { MdOutlineBlender } from "react-icons/md";
 import { TbToolsKitchen } from "react-icons/tb";
 import { GiCoffeeMug } from "react-icons/gi";
-import banner1 from "../../Assets/banner1.jpg";
-import banner2 from "../../Assets/banner2.jpg";
-import banner3 from "../../Assets/banner3.jpg";
+import {mug,blender,cookingtools,oven} from "../../Assets/Index";
 import {
   gloves1,
   gloves2,
@@ -23,7 +21,7 @@ import {
 let NavItems = [
   { name: "HOME", link: "/" },
   { name: "Shops", link: "/shops" },
-  { name: "ABOUT", link: "/" },
+  { name: "ABOUT", link: "/about" },
   { name: "CONTACT", link: "/" },
 ];
 
@@ -33,40 +31,40 @@ const ContactInfo = [
   { icon: <GoLocation />, name: "Mirpur-2, Dhaka-1216" },
 ];
 
-const BannerSlider = [
-  {
-    _id: 1,
-    title: "equilibrium",
-    name: "Arseniy Valter ",
-    status: "active",
-    caption: "UPCOMING",
-    button: "View Drop",
-    image: banner1,
-  },
-  {
-    _id: 2,
-    title: "equilibrium",
-    name: "Arseniy Valter ",
-    status: "active",
-    caption: "UPCOMING",
-    button: "View Drop",
-    image: banner2,
-  },
-  {
-    _id: 3,
-    title: "equilibrium",
-    name: "Arseniy Valter ",
-    status: "active",
-    caption: "UPCOMING",
-    button: "View Drop",
-    image: banner3,
-  },
-];
+// const BannerSlider = [
+//   {
+//     _id: 1,
+//     title: "equilibrium",
+//     name: "Arseniy Valter ",
+//     status: "active",
+//     caption: "UPCOMING",
+//     button: "View Drop",
+//     image: banner1,
+//   },
+//   {
+//     _id: 2,
+//     title: "equilibrium",
+//     name: "Arseniy Valter ",
+//     status: "active",
+//     caption: "UPCOMING",
+//     button: "View Drop",
+//     image: banner2,
+//   },
+//   {
+//     _id: 3,
+//     title: "equilibrium",
+//     name: "Arseniy Valter ",
+//     status: "active",
+//     caption: "UPCOMING",
+//     button: "View Drop",
+//     image: banner3,
+//   },
+// ];
 const CategoryLists = [
-  { icon: GiChickenOven, name: "Cooker & oven" },
-  { icon: MdOutlineBlender, name: "Blender" },
-  { icon: TbToolsKitchen, name: "Cookering Tools" },
-  { icon: GiCoffeeMug, name: "Bottle ,mug ,FlASK" },
+  { icon: oven, name: "Cooker & oven" },
+  { icon: blender, name: "Blender" },
+  { icon: cookingtools, name: "Cookering Tools" },
+  { icon: mug, name: "Bottle ,mug ,FlASK" },
 ];
 const Countries = [
   { name: "Bangladesh" },
@@ -157,7 +155,6 @@ let FooterInfo = [
 export {
   NavItems,
   ContactInfo,
-  BannerSlider,
   CategoryLists,
   ProductsData,
   FooterInfo,

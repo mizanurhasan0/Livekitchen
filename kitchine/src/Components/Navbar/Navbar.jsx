@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { AiOutlineShopping } from "react-icons/ai";
-
 import { NavItems } from "../Shares/StaticData";
 import logo from "../../Assets/logo.png";
 import { Link } from "react-router-dom";
+import Btn from "../Shares/Btn";
+import { avater } from "../../Assets/Index";
+
 const Navbar = () => {
   let [open, setOpen] = useState(false);
+  let [login, setLogin] = useState(true);
 
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Roboto">
@@ -41,13 +44,33 @@ const Navbar = () => {
             {NavItems.map((link, i) => (
               <li
                 key={i}
-                className="md:ml-8 md:my-0 md:py-4 text-xl my-4 uppercase"
+                className=" cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 uppercase"
               >
                 <Link to={link.link}>{link.name}</Link>
               </li>
             ))}
-            <li className="md:ml-8 md:my-0 md:py-4 text-xl my-4">
-              <AiOutlineShopping />
+            {login && (
+              <li className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-2  ">
+                <AiOutlineShopping className="w-7 h-7" />
+                <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-semibold rounded-full">
+                  11
+                </div>
+              </li>
+            )}
+            <li className=" cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-5">
+              {login ? (
+                <img
+                  src={avater}
+                  alt="avater"
+                  className="w-auto h-8 rounded-full"
+                />
+              ) : (
+                <Btn
+                  child={"Login"}
+                  cStyle="bg-txt text-primary px-3 rounded-full
+                uppercase box-border shadow-xl hover:font-semibold duration-300 "
+                />
+              )}
             </li>
           </ul>
         </div>

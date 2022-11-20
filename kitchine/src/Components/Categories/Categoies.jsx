@@ -21,7 +21,7 @@ const Categoies = () => {
               {item.name}
             </h1>
 
-            <item.icon className="w-full h-full mb-2  text-primary  group-hover:scale-110 duration-500" />
+            <img src={item.icon} className="w-auto h-full group-hover:scale-110 duration-500" />
           </div>
         ))}
       </div>
