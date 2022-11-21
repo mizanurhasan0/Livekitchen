@@ -3,7 +3,7 @@ import { banner5 } from "../../Assets/Index";
 
 export default function About() {
   return (
-    <div className="my-10">
+    <div className="container my-10">
       <img
         src={banner5}
         alt="Banner"

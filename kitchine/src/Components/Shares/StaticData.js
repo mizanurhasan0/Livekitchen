@@ -22,7 +22,7 @@ let NavItems = [
   { name: "HOME", link: "/" },
   { name: "Shops", link: "/shops" },
   { name: "ABOUT", link: "/about" },
-  { name: "CONTACT", link: "/" },
+  { name: "CONTACT", link: "/contact" },
 ];
 
 const ContactInfo = [
@@ -152,6 +152,23 @@ let FooterInfo = [
     ],
   },
 ];
+let faqContact=[
+  {title:"How to order submited",description:` The COST Executive Board has decided to extend our Action until
+  September 30, 2021. This means that we until then can continue our
+  collaboration supported by the COST organizational structure. We
+  have funding htmlFor one postponed in-person meeting to be held
+  probably in late July`},
+  {title:"How to work payment ",description:` The Payment Executive Board has decided to extend our Action until
+  September 30, 2021. This means that we until then can continue our
+  collaboration supported by the COST organizational structure. We
+  have funding htmlFor one postponed in-person meeting to be held
+  probably in late July`},
+  {title:"How to get product",description:` The Product Executive Board has decided to extend our Action until
+  September 30, 2021. This means that we until then can continue our
+  collaboration supported by the COST organizational structure. We
+  have funding htmlFor one postponed in-person meeting to be held
+  probably in late July`},
+]
 export {
   NavItems,
   ContactInfo,
@@ -159,4 +176,5 @@ export {
   ProductsData,
   FooterInfo,
   Countries,
+  faqContact
 };

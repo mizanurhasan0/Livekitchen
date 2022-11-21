@@ -1,6 +1,7 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import About from "../../Components/About/About";
+import Contact from "../../Components/Contact/Contact";
 import Home from "../../Pages/Home";
 import { ProductDetail } from "../../Pages/ProductDetail";
 import Shops from "../../Pages/Shops";
@@ -24,10 +25,10 @@ export default function RoutingCon() {
       path: "/about",
       element: <About />,
     },
-    // {
-    //   path: "/project",
-    //   element: <Ecommerce />,
-    // },
+    {
+      path: "/contact",
+      element: <Contact />,
+    },
   ]);
   return routes;
 }
