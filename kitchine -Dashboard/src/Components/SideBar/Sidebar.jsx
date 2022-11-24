@@ -6,18 +6,21 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { SideMenuItem } from "../Shares/StaticData";
 import { profile } from "../../Assets/Index";
 import TopBar from "./TopBar";
+import { useRef } from "react";
+import OutSideClick from "../../Utils/OutSideClick";
 
 const Sidebar = ({ children }) => {
   const [subMenu, setSubmenu] = useState(false);
   const [minSidebar, setMinSidebar] = useState(true);
   const navigate = useNavigate();
-
+  const navRef=useRef();
+  OutSideClick(navRef,setSubmenu)
   const onActiveSubmenu = (item) => {
     setSubmenu((val) => (val === item.name ? false : item.name));
     !item.subItems && navigate(item.path);
   };
   return (
-    <div className="flex h-screen w-full ">
+    <div  className="flex h-screen w-full  ">
       <div
         className={`${
           minSidebar ? "w-16 overflow-hidden" : "w-72"
@@ -58,12 +61,12 @@ const Sidebar = ({ children }) => {
                 />
               </div>
               {item.subItems && (
-                <ul
+                <ul ref={navRef}
                   className={`${
                     subMenu === item.name
                       ? minSidebar
-                        ? `absolute -mt-14 ml-[3.9rem]  rounded-sm
-                         bg-primary `
+                        ? `absolute -mt-14 ml-[4.0rem]  rounded-sm
+                         bg-primary z-10`
                         : `block`
                       : "hidden"
                   } ml-10 py-2  capitalize text-base `}

@@ -25,10 +25,9 @@ const Tables = ({ tblData = {}, action = true }) => {
       </thead>
       <tbody>
         {tblData?.data?.map((data) => {
-          //
-
+         
           return (
-            <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+            <tr key={data.id} className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
               {Object.keys(data).map((d) => (
                 <td className="px-6 py-4 whitespace-nowrap text-sm ">
                   {data[d]}

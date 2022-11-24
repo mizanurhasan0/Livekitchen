@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="p-5 bg-head">
-      <div className="flex items-center justify-between mb-5 text-default bg-txt px-2 py-4">
+      <div className="flex items-center justify-between mb-5 text-default bg-txt px-2 py-4 rounded-md">
         <h1 className="text-4xl">Dashboard</h1>
         <span
           className="border border-primary text-primary 
@@ -20,7 +20,7 @@ export default function Dashboard() {
           />
         </span>
       </div>
-      <div className="bg-txt px-2 py-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4">
+      <div className="bg-txt px-2 py-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 rounded-md">
         {orderHistory.map((history) => (
           <div
             className="border-2 shadow-md text-center 
@@ -32,7 +32,7 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      <div className="my-10 bg-txt px-2 py-5">
+      <div className="my-10 bg-txt px-2 py-5 overflow-scroll rounded-md">
         <h1 className="text-2xl pb-5 capitalize">Recent Orders</h1>
         <Tables tblData={tableDb} />
       </div>

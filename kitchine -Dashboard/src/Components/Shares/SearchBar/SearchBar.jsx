@@ -6,8 +6,9 @@ var data = require("./MOCK_DATA.json");
 const SearchBar = () => {
   const [value, setValue] = useState("");
   return (
-    <div className="relative flex flex-col">
-      <div className=" flex capitalize border border-primary rounded-md">
+    <div className=" ">
+     <div className="relative flex flex-col">
+     <div className=" flex capitalize border border-primary rounded-md">
         <input
           type="text"
           placeholder="Search here "
@@ -51,6 +52,7 @@ const SearchBar = () => {
             </div>
           ))}
       </div>
+     </div>
     </div>
   );
 };
