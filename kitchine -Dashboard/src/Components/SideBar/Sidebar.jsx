@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
-import { AiFillCaretDown,AiFillBell } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { AiFillCaretDown, AiFillBell } from "react-icons/ai";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { SideMenuItem } from "../Shares/StaticData";
 import { profile } from "../../Assets/Index";
@@ -86,8 +86,8 @@ const Sidebar = ({ children }) => {
         </ul>
       </div>
       <div className="flex flex-col w-full">
-       <TopBar setMinSidebar={()=>setMinSidebar(!minSidebar)}  />
-        <div className="pl-5">{children}</div>
+        <TopBar setMinSidebar={() => setMinSidebar(!minSidebar)} />
+        <div className="overflow-y-scroll">{children}</div>
       </div>
     </div>
   );

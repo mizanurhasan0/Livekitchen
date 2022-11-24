@@ -6,17 +6,16 @@ module.exports = {
       container: {
         center: true,
       },
-      colors:{
-        bg:"#ffff",
-        primary:"#9E293C",
-        txt:"#FFFFFF",
-        head:"#E7E7E7",
-        parag:"#DADADA"
-        
-
+      colors: {
+        bg: "#ffff",
+        primary: "#9E293C",
+        txt: "#FFFFFF",
+        head: "#E7E7E7",
+        parag: "#DADADA",
+        default: "#434242",
       },
-      container:{
-        center:true
+      container: {
+        center: true,
       },
       fontFamily: {
         Audiowide: "Audiowide",
