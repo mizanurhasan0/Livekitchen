@@ -17,7 +17,7 @@ const Sidebar = ({ children }) => {
     !item.subItems && navigate(item.path);
   };
   return (
-    <div className="flex min-h-screen w-full ">
+    <div className="flex h-screen w-full ">
       <div
         className={`${
           minSidebar ? "w-16 overflow-hidden" : "w-72"

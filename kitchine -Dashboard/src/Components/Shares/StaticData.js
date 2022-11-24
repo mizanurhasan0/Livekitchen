@@ -55,11 +55,183 @@ let SideMenuItem = [
     ],
   },
 ];
-let orderHistory=[
-  {title:"Total sells",amount:"3799.00",filter:"Compared to April 2021"},
-  {title:"Average order value",amount:"272.00",filter:"Compared to April 2021"},
-  {title:"Total Orders",amount:"578.00",filter:"Compared to April 2021"}
-]
-export {
-  SideMenuItem,orderHistory
+let orderHistory = [
+  { title: "Total sells", amount: "3799.00", filter: "Compared to April 2021" },
+  {
+    title: "Average order value",
+    amount: "272.00",
+    filter: "Compared to April 2021",
+  },
+  { title: "Total Orders", amount: "578.00", filter: "Compared to April 2021" },
+];
+let tableDb = {
+  head: [
+    {
+      name: "ID Number",
+      key: "id",
+      isImage: false,
+    },
+    {
+      name: "Item Details",
+      key: "description",
+      isImage: false,
+    },
+    {
+      name: "Received Orders",
+      key: "orders",
+      isImage: false,
+    },
+    {
+      name: "Listing Price",
+      key: "price",
+      isImage: false,
+    },
+    {
+      name: "Listing Date",
+      key: "date",
+      isImage: false,
+    },
+  ],
+  data: [
+    {
+      id: "135638494",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638495",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638496",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638497",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638498",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638499",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638410",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638411",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638412",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638413",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638414",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638415",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638416",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638417",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638418",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638419",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+    {
+      id: "135638420",
+      description: "Dori  tos Heimer Miller Sofa (Mint Condition)",
+      orders: "Timeout script",
+      price: "$6473",
+      date: "Mon, 5/25/19, 2:53:37 PM",
+    },
+  ],
+  optionData: [
+    {
+      name: "View",
+      action: () => {
+        console.log("view");
+      },
+    },
+    {
+      name: "Update",
+      action: () => {
+        console.log("Update");
+      },
+    },
+    {
+      name: "Delete",
+      action: () => {
+        console.log("Delete");
+      },
+    },
+  ],
 };
+export { SideMenuItem, orderHistory, tableDb };

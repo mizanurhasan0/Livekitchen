@@ -1,15 +1,26 @@
-import React from "react";
-import { orderHistory } from "../Shares/StaticData";
-import RecentOrders from "./RecentOrders";
+import React, { useState } from "react";
+import { orderHistory, tableDb } from "../Shares/StaticData";
+import Tables from "../Shares/Tables";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Dashboard() {
+  const [startDate, setStartDate] = useState(new Date());
   return (
-    <div className="p-5">
-      <div className="flex items-center justify-between pb-5 text-default">
+    <div className="p-5 bg-head">
+      <div className="flex items-center justify-between mb-5 text-default bg-txt">
         <h1 className="text-4xl">Dashboard</h1>
-        <span>Date</span>
+        <span
+          className="border border-primary text-primary 
+        font-semibold rounded-md p-1 "
+        >
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </span>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4">
+      <div className="bg-txt px-2 py-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4">
         {orderHistory.map((history) => (
           <div
             className="border-2 shadow-md text-center 
@@ -21,8 +32,9 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      <div>
-        <RecentOrders />
+      <div className="py-10">
+        <h1 className="text-2xl pb-5 capitalize">Recent Orders</h1>
+        <Tables tblData={tableDb} />
       </div>
     </div>
   );
