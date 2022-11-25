@@ -11,16 +11,16 @@ import OutSideClick from "../../Utils/OutSideClick";
 
 const Sidebar = ({ children }) => {
   const [subMenu, setSubmenu] = useState(false);
-  const [minSidebar, setMinSidebar] = useState(true);
+  const [minSidebar, setMinSidebar] = useState(false);
   const navigate = useNavigate();
-  const navRef=useRef();
-  OutSideClick(navRef,setSubmenu)
+  const navRef = useRef();
+  // OutSideClick(navRef, setSubmenu);
   const onActiveSubmenu = (item) => {
     setSubmenu((val) => (val === item.name ? false : item.name));
     !item.subItems && navigate(item.path);
   };
   return (
-    <div  className="flex h-screen w-full  ">
+    <div className="flex h-screen w-full  ">
       <div
         className={`${
           minSidebar ? "w-16 overflow-hidden" : "w-72"
@@ -61,7 +61,8 @@ const Sidebar = ({ children }) => {
                 />
               </div>
               {item.subItems && (
-                <ul ref={navRef}
+                <ul
+                  ref={navRef}
                   className={`${
                     subMenu === item.name
                       ? minSidebar

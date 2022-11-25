@@ -12,7 +12,7 @@ const Tables = ({ tblData = {}, action = true }) => {
           {tblData?.head?.map((head) => {
             return (
               <th
-                key={head?.id}
+                key={head?.key}
                 scope="col"
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
@@ -25,11 +25,13 @@ const Tables = ({ tblData = {}, action = true }) => {
       </thead>
       <tbody>
         {tblData?.data?.map((data) => {
-         
           return (
-            <tr key={data.id} className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              {Object.keys(data).map((d) => (
-                <td className="px-6 py-4 whitespace-nowrap text-sm ">
+            <tr
+              key={data.id}
+              className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+            >
+              {Object.keys(data).map((d, i) => (
+                <td key={i} className="px-6 py-4 whitespace-nowrap text-sm ">
                   {data[d]}
                 </td>
               ))}
