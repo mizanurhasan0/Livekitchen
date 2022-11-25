@@ -1,6 +1,6 @@
-import React from "react";
-import { tableDb } from "../../Components/Shares/StaticData";
+import React, { useState } from "react";
 import Tables from "../../Components/Shares/Tables";
+import Pagination from "../../Utils/Pagination";
 
 const ProductList = () => {
   const [currentPosts, setCurrentPosts] = useState(false);

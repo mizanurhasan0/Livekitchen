@@ -3,20 +3,21 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { AiOutlineShopping } from "react-icons/ai";
 import { NavItems } from "../Shares/StaticData";
 import logo from "../../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Btn from "../Shares/Btn";
 import { avater } from "../../Assets/Index";
 
 const Navbar = () => {
   let [open, setOpen] = useState(false);
   let [login, setLogin] = useState(true);
+  const navigate=useNavigate();
 
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Roboto">
       <div className="bg-primary">
         <div className="md:container md:flex items-center justify-between md:px-10 px-7">
           <div className="rounded-full overflow-hidden h-12 w-12 ">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className="h-12 w-12"/>
           </div>
           <div
             className="md:hidden absolute right-8 top-2 cursor-pointer"
@@ -50,7 +51,7 @@ const Navbar = () => {
               </li>
             ))}
             {login && (
-              <li className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-2  ">
+              <li onClick={()=>navigate("/carts")} className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-2  ">
                 <AiOutlineShopping className="w-7 h-7" />
                 <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-semibold rounded-full">
                   11

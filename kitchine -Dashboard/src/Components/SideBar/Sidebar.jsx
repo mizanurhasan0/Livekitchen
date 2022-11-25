@@ -66,7 +66,7 @@ const Sidebar = ({ children }) => {
                   className={`${
                     subMenu === item.name
                       ? minSidebar
-                        ? `absolute -mt-14 ml-[4.0rem]  rounded-sm
+                        ? `absolute -mt-14 ml-[4.1rem]  rounded-sm
                          bg-primary z-10`
                         : `block`
                       : "hidden"
@@ -76,8 +76,7 @@ const Sidebar = ({ children }) => {
                     <li
                       key={i}
                       className="hover:bg-txt hover:text-primary pl-6 py-2 rounded-l-sm pr-4 mb-2"
-                      onClick={() =>
-                        setSubmenu(!subMenu) & navigate(`${subItem.path}`)
+                      onClick={() =>(!minSidebar?"":setSubmenu(!subMenu)) & navigate(`${subItem.path}`)
                       }
                     >
                       {subItem.name}
