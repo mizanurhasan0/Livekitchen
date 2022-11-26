@@ -25,6 +25,7 @@ import {
 let NavItems = [
   { name: "HOME", link: "/" },
   { name: "Shops", link: "/shops" },
+  { name: "blogs", link: "/Blogs" },
   { name: "ABOUT", link: "/about" },
   { name: "CONTACT", link: "/contact" },
 ];
@@ -34,7 +35,11 @@ const ContactInfo = [
   { icon: <AiOutlinePhone />, name: "+880 1818-674298" },
   { icon: <GoLocation />, name: "Mirpur-2, Dhaka-1216" },
 ];
-
+const blogCategory = [
+  { id: 1, name: "IT" },
+  { id: 2, name: "Electronics" },
+  { id: 3, name: "Kitchen" },
+];
 // const BannerSlider = [
 //   {
 //     _id: 1,
@@ -238,4 +243,5 @@ export {
   FooterInfo,
   Countries,
   faqContact,
+  blogCategory,
 };
