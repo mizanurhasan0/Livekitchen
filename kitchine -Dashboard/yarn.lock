@@ -2677,6 +2677,11 @@ at-least-node@^1.0.0:
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
 
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
+
 autoprefixer@^10.4.11:
   version "10.4.12"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.12.tgz#183f30bf0b0722af54ee5ef257f7d4320bb33129"
@@ -3294,6 +3299,11 @@ core-js@^3.19.2:
   version "3.25.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.5.tgz#e86f651a2ca8a0237a5f064c2fe56cef89646e27"
   integrity sha512-nbm6eZSjm+ZuBQxCUPQKQCoUEfFOXjUZ8dTTyikyKaWrTYmAVbykQfwsKE5dBK88u3QCkCrzsx/PPlKfhsvgpw==
+
+core-js@^3.26.0:
+  version "3.26.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.1.tgz#7a9816dabd9ee846c1c0fe0e8fcad68f3709134e"
+  integrity sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -5775,6 +5785,21 @@ jest@^27.4.3:
     "@jest/core" "^27.5.1"
     import-local "^3.0.2"
     jest-cli "^27.5.1"
+
+jodit-react@^1.3.31:
+  version "1.3.31"
+  resolved "https://registry.yarnpkg.com/jodit-react/-/jodit-react-1.3.31.tgz#938f22796a616a29912f95d701409e8bcf2cf42a"
+  integrity sha512-Y+chtAeyDBuj/chbSNtuvcvRHL+XgySzsuYew2fIOm/W/rRSpeL4stSiZaB5Vnorgk70Ivmrb787WwhQ4RMUUQ==
+  dependencies:
+    jodit "^3.20.2"
+
+jodit@^3.20.2:
+  version "3.23.3"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.23.3.tgz#36666707b41b12f6d5e448ceb0cbb6f5b7a35f33"
+  integrity sha512-lzKh4spzJy5pxRV8a/sy1ZWIvtoDHYrWkRq7b+aXNHH+5YXM/zwmtIaZOOY+n7LEsl4mrVlLXpd1iAT766rR0w==
+  dependencies:
+    autobind-decorator "^2.4.0"
+    core-js "^3.26.0"
 
 js-sdsl@^4.1.4:
   version "4.1.5"
