@@ -13,9 +13,9 @@ const Navbar = () => {
   const navigate=useNavigate();
 
   return (
-    <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Roboto">
-      <div className="bg-primary">
-        <div className="md:container md:flex items-center justify-between md:px-10 px-7">
+    <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Roboto ">
+      <div className="bg-primary px-2 sm:px-0">
+        <div className="container md:flex items-center justify-between ">
           <div className="rounded-full overflow-hidden h-12 w-12 ">
             <img src={logo} alt="logo" className="h-12 w-12"/>
           </div>
@@ -45,7 +45,7 @@ const Navbar = () => {
             {NavItems.map((link, i) => (
               <li
                 key={i}
-                className=" cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 uppercase"
+                className="cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 uppercase"
               >
                 <Link to={link.link}>{link.name}</Link>
               </li>
@@ -63,7 +63,7 @@ const Navbar = () => {
                 <img
                   src={avater}
                   alt="avater"
-                  className="w-auto h-8 rounded-full"
+                  className="bg-yellow-500 h-8 w-8 rounded-full"
                 />
               ) : (
                 <Btn
