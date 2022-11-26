@@ -1,10 +1,14 @@
-import { AiOutlineMail, AiOutlinePhone,AiOutlineShopping } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineShopping,
+} from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 import { GiChickenOven } from "react-icons/gi";
 import { MdOutlineBlender } from "react-icons/md";
 import { TbToolsKitchen } from "react-icons/tb";
 import { GiCoffeeMug } from "react-icons/gi";
-import {mug,blender,cookingtools,oven} from "../../Assets/Index";
+import { mug, blender, cookingtools, oven } from "../../Assets/Index";
 import {
   gloves1,
   gloves2,
@@ -121,6 +125,54 @@ const ProductsData = [
     Useful for daily household wash dishes, plates
     Dimension: (29x12.5)cm`,
   },
+  {
+    name: "Oil Spray Bottle",
+    Price: "390 Tk",
+    oldPrice: "420tk",
+    images: [oil1, oil2, oil3],
+    description:
+      "Material:PP + Glass,Weight:220g,Size:Height 18cm*Diameter 4.2cm,capacity:100ml",
+  },
+  {
+    name: "hand gloves",
+    Price: "240 Tk",
+    oldPrice: "420tk",
+    images: [gloves1, gloves2, gloves3],
+    description: `Material: rubber and latex
+    Useful for daily household wash dishes, plates
+    Dimension: (29x12.5)cm`,
+  },
+  {
+    name: " Kitchen Rack",
+    Price: "1850 Tk",
+    oldPrice: "2000tk",
+    images: [rack1, rack2, rack3],
+    description: `Kitchen Trolley Kitchen Storage Rak Dapur Rak Memasak Beroda With Wheels Durable`,
+  },
+  {
+    name: "3Pcs Shrimp Knife",
+    Price: "150 Tk",
+    oldPrice: "200tk",
+    images: [knif1],
+    description: `Material: ABS, stainless steel Size: 13x3.5cm Weight: 10g/pc Color: Random`,
+  },
+  {
+    name: "Oil Spray Bottle",
+    Price: "390 Tk",
+    oldPrice: "420tk",
+    images: [oil1, oil2, oil3],
+    description:
+      "Material:PP + Glass,Weight:220g,Size:Height 18cm*Diameter 4.2cm,capacity:100ml",
+  },
+  {
+    name: "hand gloves",
+    Price: "240 Tk",
+    oldPrice: "420tk",
+    images: [gloves1, gloves2, gloves3],
+    description: `Material: rubber and latex
+    Useful for daily household wash dishes, plates
+    Dimension: (29x12.5)cm`,
+  },
 ];
 let FooterInfo = [
   {
@@ -152,23 +204,32 @@ let FooterInfo = [
     ],
   },
 ];
-let faqContact=[
-  {title:"How to order submited",description:` The COST Executive Board has decided to extend our Action until
+let faqContact = [
+  {
+    title: "How to order submited",
+    description: ` The COST Executive Board has decided to extend our Action until
   September 30, 2021. This means that we until then can continue our
   collaboration supported by the COST organizational structure. We
   have funding htmlFor one postponed in-person meeting to be held
-  probably in late July`},
-  {title:"How to work payment ",description:` The Payment Executive Board has decided to extend our Action until
+  probably in late July`,
+  },
+  {
+    title: "How to work payment ",
+    description: ` The Payment Executive Board has decided to extend our Action until
   September 30, 2021. This means that we until then can continue our
   collaboration supported by the COST organizational structure. We
   have funding htmlFor one postponed in-person meeting to be held
-  probably in late July`},
-  {title:"How to get product",description:` The Product Executive Board has decided to extend our Action until
+  probably in late July`,
+  },
+  {
+    title: "How to get product",
+    description: ` The Product Executive Board has decided to extend our Action until
   September 30, 2021. This means that we until then can continue our
   collaboration supported by the COST organizational structure. We
   have funding htmlFor one postponed in-person meeting to be held
-  probably in late July`},
-]
+  probably in late July`,
+  },
+];
 export {
   NavItems,
   ContactInfo,
@@ -176,5 +237,5 @@ export {
   ProductsData,
   FooterInfo,
   Countries,
-  faqContact
+  faqContact,
 };
