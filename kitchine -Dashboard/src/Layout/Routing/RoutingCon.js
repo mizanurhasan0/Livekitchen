@@ -1,9 +1,8 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
+import Login from "../../Components/Login/Login";
 import Analytics from "../../Pages/Analytics/Analytics";
 import Category from "../../Pages/Catalog/Category";
-import CategoryList from "../../Pages/Catalog/CategoryList";
-import Product from "../../Pages/Catalog/Product";
 import ProductList from "../../Pages/Catalog/ProductList";
 import CustomerList from "../../Pages/Customers/CustomerList";
 import Home from "../../Pages/Home";
@@ -24,17 +23,10 @@ export default function RoutingCon() {
       element: <Category />,
     },
     {
-      path: "/categorieslist",
-      element: <CategoryList />,
-    },
-    {
-      path: "/product",
-      element: <Product />,
-    },
-    {
-      path: "/productlist",
+      path: "/products",
       element: <ProductList />,
     },
+    
     {
       path: "/orders",
       element: <Orders />,
@@ -43,10 +35,10 @@ export default function RoutingCon() {
       path: "/customers",
       element: <CustomerList />,
     },
-    // {
-    //   path: "/project",
-    //   element: <Ecommerce />,
-    // },
+    {
+      path: "/login",
+      element: <Login />,
+    },
   ]);
   return routes;
 }

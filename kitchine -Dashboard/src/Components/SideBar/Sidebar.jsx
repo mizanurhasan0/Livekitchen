@@ -20,19 +20,19 @@ const Sidebar = ({ children }) => {
     !item.subItems && navigate(item.path);
   };
   return (
-    <div className="flex h-screen w-full  ">
+    <div className="flex flex-row h-screen w-full  ">
       <div
         className={`${
-          minSidebar ? "w-16 overflow-hidden" : "w-72"
+          minSidebar ? "min-w-[4rem] w-[4rem] overflow-hidden" : "w-72"
         } bg-primary text-txt  border-r-4 border-primary shadow-lg text-lg 
         duration-500`}
       >
         {/* Logo */}
         <div
           className={`${
-            minSidebar ? "invisible" : ""
+            minSidebar ? "invisible" : "visible"
           } px-5 bg-txt text-primary flex  
-        justify-between py-4 overflow-hidden duration-500`}
+        justify-between py-4 overflow-hidden  `}
         >
           <h1 className="text-2xl font-semibold uppercase">Online</h1>
           <span className="bg-primary text-txt capitalize px-2 rounded-md">

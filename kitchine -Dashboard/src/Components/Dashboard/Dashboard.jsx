@@ -15,6 +15,7 @@ export default function Dashboard() {
     <div className="p-5 bg-head">
       <div className="flex items-center justify-between mb-5 text-default bg-txt px-2 py-4 rounded-md">
         <h1 className="text-4xl">Dashboard</h1>
+     
         <span
           className="border border-primary text-primary 
         font-semibold rounded-md p-1 "

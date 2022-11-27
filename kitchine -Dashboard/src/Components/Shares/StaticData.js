@@ -24,12 +24,12 @@ let OrdersNav=[
 let SideMenuItem = [
   { path: "/", name: "Dashboard", icon: AiOutlineDashboard },
   {
-    path: "/product",
+    path: "/products",
     name: "Products",
     icon: AiOutlineDatabase,
     subItems: [
      
-      { path: "/product", name: "Product" },
+      { path: "/products", name: "Product" },
       { path: "/category", name: "Categories List" },
       
     ],
