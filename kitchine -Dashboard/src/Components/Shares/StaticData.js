@@ -13,36 +13,38 @@ import { MdOutlineBlender } from "react-icons/md";
 import { GiCoffeeMug } from "react-icons/gi";
 import { TbToolsKitchen, TbBrandGoogleAnalytics } from "react-icons/tb";
 
+let OrdersNav=[
+  { path: "/orders", name: "All Orders",active:null  },
+  { path: "/orders?status=pending", name: "Pending",active:"pending" },
+  { path: "/orders?status=delivered", name: "Delivered",active:"delivered" },
+  { path: "/orders?status=paid", name: "Paid",active:"paid" },
+  { path: "/orders?status=unpaid", name: "Unpaid",active:"unpaid" },
+
+]
 let SideMenuItem = [
   { path: "/", name: "Dashboard", icon: AiOutlineDashboard },
   {
-    path: "/",
-    name: "Catelog",
+    path: "/product",
+    name: "Products",
     icon: AiOutlineDatabase,
     subItems: [
-      { path: "/productlist", name: "Product List" },
+     
       { path: "/product", name: "Product" },
-      { path: "/categorieslist", name: "Categories List" },
-      { path: "/category", name: "Category" },
+      { path: "/category", name: "Categories List" },
+      
     ],
   },
   {
-    path: "/",
+    path: "/customers",
     name: "Customers",
     icon: AiOutlineUser,
-    subItems: [
-      { path: "/customerslist", name: "Customers List" },
-      { path: "/customer", name: "Customer" },
-    ],
+    
   },
   {
-    path: "/",
+    path: "/orders",
     name: "Orders",
     icon: AiOutlineShoppingCart,
-    subItems: [
-      { path: "/orderslist", name: "Orders List" },
-      { path: "/orderdetails", name: "Order Details" },
-    ],
+   
   },
   { path: "/analytics", name: "Analytics", icon: TbBrandGoogleAnalytics },
   {
@@ -234,4 +236,4 @@ let tableDb = {
     },
   ],
 };
-export { SideMenuItem, orderHistory, tableDb };
+export { SideMenuItem, orderHistory, tableDb,OrdersNav };

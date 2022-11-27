@@ -5,7 +5,9 @@ import Category from "../../Pages/Catalog/Category";
 import CategoryList from "../../Pages/Catalog/CategoryList";
 import Product from "../../Pages/Catalog/Product";
 import ProductList from "../../Pages/Catalog/ProductList";
+import CustomerList from "../../Pages/Customers/CustomerList";
 import Home from "../../Pages/Home";
+import Orders from "../../Pages/Orders/Orders";
 
 export default function RoutingCon() {
   const routes = useRoutes([
@@ -33,7 +35,14 @@ export default function RoutingCon() {
       path: "/productlist",
       element: <ProductList />,
     },
-
+    {
+      path: "/orders",
+      element: <Orders />,
+    },
+    {
+      path: "/customers",
+      element: <CustomerList />,
+    },
     // {
     //   path: "/project",
     //   element: <Ecommerce />,

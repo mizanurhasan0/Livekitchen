@@ -4,6 +4,7 @@ import Tables from "../Shares/Tables";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Pagination from "../../Utils/Pagination";
+import NotifyList from "./NotifyList";
 
 export default function Dashboard() {
   const [startDate, setStartDate] = useState(new Date());
@@ -24,6 +25,7 @@ export default function Dashboard() {
           />
         </span>
       </div>
+      {/* Summery */}
       <div className="bg-txt px-2 py-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 rounded-md">
         {orderHistory.map((history, i) => (
           <div
@@ -37,6 +39,11 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
+   {/* Notifying..... */}
+   <div>
+        <NotifyList />
+      </div>
+      {/*End Notifying..... */}
       <div className="my-10 bg-txt px-2 py-5 overflow-scroll rounded-md">
         <h1 className="text-2xl pb-5 capitalize">Recent Orders</h1>
         <Tables tblData={currentPosts} />

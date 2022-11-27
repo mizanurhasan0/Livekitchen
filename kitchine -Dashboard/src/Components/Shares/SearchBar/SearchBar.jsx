@@ -6,7 +6,7 @@ var data = require("./MOCK_DATA.json");
 const SearchBar = () => {
   const [value, setValue] = useState("");
   return (
-    <div className=" ">
+    <div className=" w-full">
      <div className="relative flex flex-col">
      <div className=" flex capitalize border border-primary rounded-md">
         <input
