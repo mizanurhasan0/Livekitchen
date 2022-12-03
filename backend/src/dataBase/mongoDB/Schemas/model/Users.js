@@ -52,6 +52,10 @@ const userSchema = new Schema(
       type: [{ type: String, enum: ["user", "admin"] }],
       default: ["user"],
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     tokens: [
       {
         token: {
@@ -85,5 +89,8 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+userSchema.methods.checkPassword = async function (submittedPassword) {
+  return await bCrypt.compare(submittedPassword, this.passwordHash);
+};
 const Users = model("Users", userSchema);
 module.exports = Users;
