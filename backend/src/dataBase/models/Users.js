@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const validator = require("validator");
-const bCrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema(
@@ -18,7 +18,7 @@ const userSchema = new Schema(
         if (!validator.isEmail(value)) throw new Error("Email is invalid");
       },
     },
-    passwordHash: {
+    password: {
       type: String,
       required: true,
       minlength: 7,
@@ -42,7 +42,7 @@ const userSchema = new Schema(
     },
     country: {
       type: String,
-      required: true,
+      default: "Bangladesh",
     },
     phone: {
       type: String,
@@ -79,10 +79,11 @@ userSchema.methods.generateToken = async function () {
 userSchema.pre("save", async function (next) {
   try {
     const user = this;
-    if (!user.isModified("passwordHash")) return next();
-    const salt = await bCrypt.genSalt(10);
-    const hash = await bCrypt.hash(user.passwordHash, salt);
-    user.passwordHash = hash;
+    if (!user.isModified("password")) return next();
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(user.password, salt);
+    user.password = hash;
     next();
   } catch (error) {
     throw new Error(error.message);
@@ -90,7 +91,8 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.checkPassword = async function (submittedPassword) {
-  return await bCrypt.compare(submittedPassword, this.passwordHash);
+  return await bcrypt.compare(submittedPassword, this.password);
 };
+
 const Users = model("Users", userSchema);
 module.exports = Users;

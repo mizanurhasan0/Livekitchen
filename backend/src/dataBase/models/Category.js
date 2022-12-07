@@ -9,6 +9,10 @@ const categorySchema = Schema(
     icon: {
       type: String,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
