@@ -1,9 +1,7 @@
 const ResponseHandler = (modelEntity) => {
   return (req, res) => {
-   
     const httpRequest = {
       token: req.token,
-      table:req.table,
       user: req.user,
       params: req.params,
       body: req.body,
@@ -18,11 +16,27 @@ const ResponseHandler = (modelEntity) => {
     };
     modelEntity(httpRequest)
       .then((respon) => {
-       res.json(respon)
+        if (respon?.cookie === "set") {
+          res.cookie(process.env.COOKIE_NAME, respon?.token, {
+            httpOnly: true,
+            sameSite: "None",
+          });
+
+          // delete respon.cookie;
+        } else if (respon?.cookie === "unset") {
+          res.clearCookie(process.env.COOKIE_NAME, {
+            httpOnly: true,
+            sameSite: "None",
+            secure: true,
+          });
+          delete respon.cookie;
+        }
+        if (respon?.redirect?.status) return res.redirect(respon.redirect.link);
+        return res.status(respon?.status || 200).send(Object.freeze(respon));
       })
       .catch((err) =>
         res.status(400).send(Object.freeze({ error: err.message }))
       );
   };
 };
-module.exports=ResponseHandler;
+module.exports = ResponseHandler;

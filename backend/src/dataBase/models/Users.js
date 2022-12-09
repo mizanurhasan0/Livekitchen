@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const validator = require("validator");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema(
@@ -24,25 +24,8 @@ const userSchema = new Schema(
       minlength: 7,
       trim: true,
     },
-    street: {
+    address: {
       type: String,
-      required: true,
-    },
-    apartment: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    zip: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      default: "Bangladesh",
     },
     phone: {
       type: String,
@@ -69,6 +52,18 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+  userObject.id = userObject._id;
+  delete userObject._id;
+  delete userObject.__v;
+  delete userObject.tokens;
+  delete userObject.createdAt;
+  delete userObject.updatedAt;
+  delete userObject.password;
+  return userObject;
+};
 userSchema.methods.generateToken = async function () {
   const token = jwt.sign({ _id: this._id.toString() }, process.env.SECRET_KEY);
   this.tokens = this.tokens.concat({ token });

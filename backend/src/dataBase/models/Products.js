@@ -35,7 +35,14 @@ const productSchema = new Schema(
       type: Number,
       default: 0,
     },
-    createdDate: new Date(),
+    isActive:{
+      type:Boolean,
+      default:true
+    },
+    createdDate: {
+      type: Date,
+      default: new Date(),
+    },
   },
   { timestamps: true }
 );
