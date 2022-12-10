@@ -49,5 +49,5 @@ productSchema.methods.toJSON = function () {
 
   return productObj;
 };
-const Products = model("products", productSchema);
+const Products = model("Products", productSchema);
 module.exports = Products;

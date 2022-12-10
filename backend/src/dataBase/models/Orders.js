@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const orderSchema = Schema(
+const orderSchema =new Schema(
   {
   
     shippingAddress1: {

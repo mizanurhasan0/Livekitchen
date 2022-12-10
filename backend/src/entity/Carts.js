@@ -32,7 +32,6 @@ const Create = async (req) => {
         table: TABLE,
         reqBody: {
           userId: "63919b50601b520cac5b77ef",
-          products: [{ productId, quantity }],
         },
       });
 
@@ -88,18 +87,14 @@ const getOne = async (req) => {
           userId: req.user.id,
           isActive: true,
         },
-        options: {
-          populate: {
-            path: "Users",
-            select: "name ",
-            unset: " _id __v createdAt",
-          },
-        },
+       
       },
+      options: { populate: { path: "products.productId",select:"name description images brand price countInStock" } }
     });
     if (!newInstance) return { status: 404, reason: "No data found" };
-    return { newInstance };
+    return  {newInstance} ;
   } catch (err) {
+    console.log(err)
     throw new Error("Something went wrong");
   }
 };
