@@ -10,14 +10,7 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    richDescription: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
+   
     images: [{ type: String, required: false }],
     brand: {
       type: String,

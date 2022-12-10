@@ -19,7 +19,7 @@ const cartSchema = Schema(
         },
       },
     ],
-    active: {
+    isActive: {
       type: Boolean,
       default: true,
     },
@@ -27,15 +27,7 @@ const cartSchema = Schema(
       type: Date,
       default: Date.now,
     },
-    status: {
-      type: [
-        {
-          type: String,
-          enum: ["active", "requested", "pending", "accepted", "delivered"],
-        },
-      ],
-      default: ["active"],
-    },
+  
   },
   { timestamps: true }
 );
