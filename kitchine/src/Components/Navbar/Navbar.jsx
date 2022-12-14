@@ -13,11 +13,12 @@ const Navbar = () => {
   const navigate=useNavigate();
 
   return (
-    <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Roboto ">
+    <div className="shadow-md w-full fixed top-0 left-0 z-20 text-txt font-Audiowide ">
       <div className="bg-primary px-2 sm:px-0">
         <div className="container md:flex items-center justify-between ">
-          <div className="rounded-full overflow-hidden h-12 w-12 ">
-            <img src={logo} alt="logo" className="h-12 w-12"/>
+          <div className="flex items-center space-x-2 ">
+            <img src={logo} alt="logo" className="h-12 w-12 rounded-full"/>
+            <span className="hidden xl:block capitalize tracking-widest">Grameen Shop BD</span>
           </div>
           <div
             className="md:hidden absolute right-8 top-2 cursor-pointer"
@@ -45,20 +46,20 @@ const Navbar = () => {
             {NavItems.map((link, i) => (
               <li
                 key={i}
-                className="cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 uppercase"
+                className="cursor-pointer md:ml-8 md:my-0 md:py-4 xl:text-xl my-4 uppercase"
               >
                 <Link to={link.link}>{link.name}</Link>
               </li>
             ))}
             {login && (
-              <li onClick={()=>navigate("/carts")} className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-2  ">
+              <li onClick={()=>navigate("/carts")} className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 xl:text-xl my-4 pr-2  ">
                 <AiOutlineShopping className="w-7 h-7" />
                 <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-semibold rounded-full">
                   11
                 </div>
               </li>
             )}
-            <li className=" cursor-pointer md:ml-8 md:my-0 md:py-4 text-xl my-4 pr-5">
+            <li className=" cursor-pointer md:ml-8 md:my-0 md:py-4 xl:text-xl my-4 pr-5">
               {login ? (
                 <img
                   src={avater}

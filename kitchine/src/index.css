@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Courgette&family=Monoton&family=Roboto:wght@100;300;400;500;700&family=Silkscreen:wght@400;700&family=Lato:wght@100;300;400;700;900&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import 'react-slideshow-image/dist/styles.css';
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/* 
 .bgGradient{
     background: linear-gradient(112.1deg,  #460c5c 11.4%,  #230331 70.2%);
 }
@@ -23,5 +26,6 @@
 }
 .BtnGradient:hover{
     background: linear-gradient(170.1deg,  #2ea7f8a8 11.4%,  #A2C6DC  70.2%);
-    
-}@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+     */
+/* } */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');

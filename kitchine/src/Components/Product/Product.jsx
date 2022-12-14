@@ -20,9 +20,9 @@ export default function Product({ cardInfo }) {
       <h1 className="md:text-xl uppercase py-2">{cardInfo.name}</h1>
 
       <p className="font-light pb-2 text-xl">
-        ${cardInfo.Price}
+        {cardInfo.Price}
         <span className="line-through text-gray-400 pl-2 font-normal text-base">
-          ${cardInfo.oldPrice}
+          {cardInfo.oldPrice}
         </span>
       </p>
 

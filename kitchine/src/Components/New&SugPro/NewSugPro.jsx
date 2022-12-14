@@ -5,8 +5,8 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 export default function NewSugPro({ title }) {
   return (
-    <div className="container font-Lato py-5 ">
-      <h1 className="text-2xl uppercase  text-primary text-left py-2 mb-5 ">
+    <div className="container font-Audiowide py-5 ">
+      <h1 className="italic text-2xl uppercase  text-primary text-left py-2 mb-5 ">
         {title}
       </h1>
       <div className=" grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-items-center">

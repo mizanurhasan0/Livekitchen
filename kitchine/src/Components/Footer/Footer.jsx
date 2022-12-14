@@ -27,7 +27,7 @@ const Footer = () => {
           {FooterInfo.map((data, key) => {
             return (
               <div key={key} className="capitalize ">
-                <h1 className="text-2xl text-gray-600 ">{data.title}</h1>
+                <h1 className="text-xl text-gray-600 font-Audiowide">{data.title}</h1>
                 <ul className="text-primary">
                   {data.list.map((link, key) => (
                     <li key={key} className="py-1">
@@ -39,7 +39,7 @@ const Footer = () => {
             );
           })}
           <div className="capitalize ">
-            <h1 className="text-2xl text-gray-600 ">Contact Us</h1>
+            <h1 className="text-xl text-gray-600 font-Audiowide ">Contact Us</h1>
             <ul className="text-primary">
               <li className="py-1 flex items-center ">
                 <BiLocationPlus className="mr-1 " />

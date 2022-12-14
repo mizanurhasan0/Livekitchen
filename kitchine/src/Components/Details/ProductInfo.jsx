@@ -28,7 +28,7 @@ export const ProductInfo = () => {
   };
 
   return (
-    <div className=" mb-10 ">
+    <div className=" mb-10 font-Audiowide ">
       <div className="md:grid grid-cols-5 gap-5 text-center md:text-start space-y-5">
         {/* mx-[80px] */}
         <div className="col-span-3 grid grid-rows-6 h-[30rem] ">
@@ -70,19 +70,19 @@ export const ProductInfo = () => {
         {/* End Images */}
         <div className="md:col-span-2 shadow-md  flex flex-col justify-between ">
           <div className="space-y-3 pl-5">
-            <h1 className="text-3xl font-semibold uppercase ">
+            <h1 className="text-2xl font-semibold uppercase ">
               {ProductsData[0].name}
             </h1>
-            <h2 className="text-xl capitalize text-gray-500">
+            <h2 className="text-base capitalize text-gray-500">
               product code :<span className="text-green-700">M-944-142607</span>
             </h2>
-            <p className="text-2xl uppercase">
+            <p className="text-xl uppercase">
               <span className="line-through mr-2 text-xl text-gray-500 ">
                 {ProductsData[0].oldPrice}
               </span>{" "}
               {ProductsData[0].Price}
             </p>
-            <p className="text-2xl font-semibold ">
+            <p className="text-xl font-semibold ">
               Qty:
               <input
                 type="number"

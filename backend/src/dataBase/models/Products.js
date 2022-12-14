@@ -12,6 +12,7 @@ const productSchema = new Schema(
     },
    
     images: [{ type: String, required: false }],
+    
     brand: {
       type: String,
       required: true,

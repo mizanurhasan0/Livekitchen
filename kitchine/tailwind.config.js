@@ -25,6 +25,8 @@ module.exports = {
         Roboto: "Roboto",
         Silkscreen: "Silkscreen",
         Lato: "Lato",
+        Playfair:"Playfair",
+        Lobster:"Lobster"
       },
     },
   },

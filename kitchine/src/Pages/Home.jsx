@@ -1,12 +1,13 @@
 import React from "react";
 import { banner4 } from "../Assets/Index";
-import SliderImage from "../Components/Banner/SliderImage";
+import ImageSlider from "../Components/Banner/ImageSlider";
 import Categoies from "../Components/Categories/Categoies";
 import NewSugPro from "../Components/New&SugPro/NewSugPro";
 export default function Home() {
   return (
     <div className="">
-      <SliderImage />
+      <ImageSlider/>
+      <marquee className="py-2 text-blue-500 text-lg capitalize"> Website is under development !! </marquee>
       <Categoies />
       <NewSugPro title="latest Products " />
       <NewSugPro title="Top selling Products " />

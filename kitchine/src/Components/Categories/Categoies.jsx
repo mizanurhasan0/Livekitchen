@@ -4,8 +4,8 @@ import { CategoryLists } from "../Shares/StaticData";
 
 const Categoies = () => {
   return (
-    <div className="container my-10  font-Lato">
-      <h1 className="text-2xl uppercase  text-primary  text-left py-2 rounded-md ">
+    <div className="container my-10  font-Audiowide">
+      <h1 className="text-2xl  uppercase  text-primary  text-left py-2 rounded-md ">
         Kitchen & dining category
       </h1>
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-5 ">
