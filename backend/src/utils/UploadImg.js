@@ -23,13 +23,13 @@ const storage = multer.diskStorage({
 
 var upload = multer({
   storage: storage,
- limits:{fileSize:1000000},
+ limits:{fileSize:100000000},
  fileFilter:(req,file,cb)=>{
     if(file.fieldname==="img"){
         if(file.mimetype==="image/png"|| file.mimetype==="image/jpg"||file.mimetype==="image/jpeg"){
             cb(null,true)
         }else{
-            cb(new Error("only jpeg"))
+            cb(new Error("only jpeg,png and jpg!! "))
         }
     }
  }

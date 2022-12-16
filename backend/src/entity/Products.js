@@ -4,12 +4,19 @@ const TABLE = "products";
 
 const Create = async (req) => {
   const { name, brand, price } = req.body;
+ console.log(req.files[0])
   try {
-    const newInstance = await db.Create({ table: TABLE, reqBody: req.body });
+  //  let images=[]
+    for(let i in req.files){
+      // images.push(req.files[i].filename)
+      console.log(req.files[i].filename)
+    }
+  //   // console.log(req.body)
+  //   const newInstance = await db.Create({ table: TABLE, reqBody: req.body });
   
-    return { newInstance };
+  //   return { newInstance };
   } catch (error) {
-    throw new Error("Something went wrong.");
+    throw new Error("Something went wrong."+error);
   }
 };
 

@@ -1,6 +1,8 @@
 const ResponseHandler = (modelEntity) => {
   return (req, res) => {
+  
     const httpRequest = {
+      files:req.files,
       token: req.token,
       user: req.user,
       params: req.params,
