@@ -28,7 +28,7 @@ const Create = async ({ table, reqBody, options }) => {
     }
     return res;
   } catch (error) {
-    console.log(error);
+    return {status:400,msg:"Something went wrong"}
   }
 };
 

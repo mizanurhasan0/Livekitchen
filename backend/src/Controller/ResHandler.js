@@ -1,8 +1,11 @@
+const DeleteImages = require("../utils/DeleteImages");
+
 const ResponseHandler = (modelEntity) => {
+
   return (req, res) => {
-  
+    
     const httpRequest = {
-      files:req.files,
+      files: req.files,
       token: req.token,
       user: req.user,
       params: req.params,
@@ -16,6 +19,7 @@ const ResponseHandler = (modelEntity) => {
         "User-Agent": req.get("User-Agent"),
       },
     };
+    
     modelEntity(httpRequest)
       .then((respon) => {
         if (respon?.cookie === "set") {
@@ -34,6 +38,7 @@ const ResponseHandler = (modelEntity) => {
           delete respon.cookie;
         }
         if (respon?.redirect?.status) return res.redirect(respon.redirect.link);
+
         return res.status(respon?.status || 200).send(Object.freeze(respon));
       })
       .catch((err) =>

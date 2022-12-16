@@ -10,14 +10,22 @@ const {
 } = require("../entity/Products");
 const auth = require("../middleware/Auth");
 const upload = require("../utils/UploadImg");
+const CheckImageSize = require("../utils/CheckImgSize");
 
 const router = require("express").Router();
+const imgPath = 'images/1670859279175-1671172076075.jpg'
 
-router.post("/img",upload.array("img",5), (req,res)=>{
-  console.log(req.file)
-  for(let i in req.files){
-    console.log(req.files[i])
-  }
+router.get("/img", (req,res)=>{
+  console.log(CheckImageSize("1670859279175-1671172076075.jpg"))
+  // let imgInfo = fs.statSync(imgPath)
+  // let fileSize = imgInfo.size
+  // let fileSizeMB = imgInfo.size / (1024 * 1024)
+  // console.log('File size in kb:' + fileSize)
+  // console.log('File size in mb:' + fileSizeMB)
+  // console.log(req.file)
+  // for(let i in req.files){
+  //   console.log(req.files[i])
+  // }
   // fs.unlink("images/" + req.file.filename, (err) => {
   //   if (err) {
   //       throw err;
@@ -31,6 +39,6 @@ router.post("/products",upload.array("img",5), ResponseHandler(Create));
 router.get("/products", ResponseHandler(getAll));
 router.get("/products/:id", ResponseHandler(getOne));
 router.patch("/products/remove/:id", auth, ResponseHandler(remove));
-router.patch("/products/update/:id", ResponseHandler(update));
+router.patch("/products/update/:id",upload.array("img",5), ResponseHandler(update));
 
 module.exports = router;

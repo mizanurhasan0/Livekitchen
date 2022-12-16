@@ -1,22 +1,23 @@
 const db = require("../dataBase/index");
-
+const CheckImageSize = require("../utils/CheckImgSize");
+const DeleteImages = require("../utils/DeleteImages");
 const TABLE = "products";
 
 const Create = async (req) => {
-  const { name, brand, price } = req.body;
- console.log(req.files[0])
   try {
-  //  let images=[]
-    for(let i in req.files){
-      // images.push(req.files[i].filename)
-      console.log(req.files[i].filename)
+    const images = CheckImageSize(req);
+    if (images.check) {
+      const newInstance = await db.Create({
+        table: TABLE,
+        reqBody: { ...req.body, images: images.images },
+      });
+
+      return { newInstance };
+    } else {
+      return { error: "Image size not more than 1MB" };
     }
-  //   // console.log(req.body)
-  //   const newInstance = await db.Create({ table: TABLE, reqBody: req.body });
-  
-  //   return { newInstance };
   } catch (error) {
-    throw new Error("Something went wrong."+error);
+    throw new Error("Something went wrong.");
   }
 };
 
@@ -42,13 +43,22 @@ const remove = async (req) => {
 const update = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
-
-    const newCate = await db.update({
+    const images = CheckImageSize(req);
+    
+// Delete previous images Function
+    DeleteImages(req,TABLE)
+    const newInstance = await db.update({
       table: TABLE,
-      reqBody: { findBy: { _id: req.params.id }, body: req.body },
+      reqBody: {
+        findBy: { _id: req.params.id },
+        body:
+          req.files.length === 0
+            ? req.body
+            : { ...req.body, images: images.images },
+      },
     });
-    if (!user) return { status: 404, reason: "User not found." };
-    return { newCate };
+
+    return { newInstance };
   } catch (err) {
     throw new Error("Something went wrong");
   }
