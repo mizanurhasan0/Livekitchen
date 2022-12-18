@@ -44,9 +44,9 @@ const update = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
     const images = CheckImageSize(req);
-    
-// Delete previous images Function
-    DeleteImages(req,TABLE)
+
+    // Delete previous images Function
+    DeleteImages(req, TABLE);
     const newInstance = await db.update({
       table: TABLE,
       reqBody: {

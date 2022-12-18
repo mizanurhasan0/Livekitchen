@@ -10,9 +10,9 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-   
+
     images: [{ type: String, required: false }],
-    
+
     brand: {
       type: String,
       required: true,
@@ -29,9 +29,9 @@ const productSchema = new Schema(
       type: Number,
       default: 0,
     },
-    isActive:{
-      type:Boolean,
-      default:true
+    isActive: {
+      type: Boolean,
+      default: true,
     },
     createdDate: {
       type: Date,

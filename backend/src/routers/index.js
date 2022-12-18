@@ -9,6 +9,6 @@ const allRouters=[
     routerProduct
 ]
 
-router.use("/",allRouters);
+router.use("/dashboard",allRouters);
 
 module.exports=router;

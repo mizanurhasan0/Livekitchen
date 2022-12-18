@@ -16,20 +16,13 @@ const Create = async (req) => {
 
 const remove = async (req) => {
   try {
-    if (!req.params.id) return { status: 401, reason: "Bad request" };
-
-    const newCat = await db.update({
-      table: TABLE,
-      reqBody: {
-        findBy: { _id: req.params.id },
-        body: { isActive: false },
-      },
-    });
-    if (!user) return { status: 404, reason: "User not found." };
-    return { status: 200, newCat };
+    if (!req.params.id) return { status: 400, reason: "Invalid request" };
+    const data = await db.remove({ table: TABLE, reqBody: { findBy: { _id: req.params.id } } });
+    if (!data) return { status: 404, reason: 'User not found.' };
+    return { status: 200, data };
   } catch (err) {
     console.log(err);
-    throw new Error("Something went wrong");
+    throw new Error('Something went wrong');
   }
 };
 

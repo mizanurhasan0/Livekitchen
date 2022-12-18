@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { AiFillCaretDown, AiFillBell } from "react-icons/ai";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { SideMenuItem } from "../Shares/StaticData";
@@ -9,7 +9,7 @@ import TopBar from "./TopBar";
 import { useRef } from "react";
 import OutSideClick from "../../Utils/OutSideClick";
 
-const Sidebar = ({ children }) => {
+const Sidebar = () => {
   const [subMenu, setSubmenu] = useState(false);
   const [minSidebar, setMinSidebar] = useState(false);
   const navigate = useNavigate();
@@ -90,7 +90,7 @@ const Sidebar = ({ children }) => {
       </div>
       <div className="flex flex-col w-full">
         <TopBar setMinSidebar={() => setMinSidebar(!minSidebar)} />
-        <div className="overflow-y-scroll">{children}</div>
+        <div className="overflow-y-scroll"><Outlet/></div>
       </div>
     </div>
   );

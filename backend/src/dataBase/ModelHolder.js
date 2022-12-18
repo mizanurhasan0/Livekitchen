@@ -35,6 +35,7 @@ const Create = async ({ table, reqBody, options }) => {
 const find = async ({ table, reqBody, options }) => {
   try {
     let res;
+   
     if (options?.populate) {
       let populateOption = "";
       options.populate?.unset

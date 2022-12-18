@@ -22,31 +22,31 @@ let OrdersNav=[
 
 ]
 let SideMenuItem = [
-  { path: "/", name: "Dashboard", icon: AiOutlineDashboard },
+  { path: "/dashboard", name: "Dashboard", icon: AiOutlineDashboard },
   {
-    path: "/products",
+    path: "/dashboard/products",
     name: "Products",
     icon: AiOutlineDatabase,
     subItems: [
      
-      { path: "/products", name: "Product" },
-      { path: "/category", name: "Categories List" },
+      { path: "/dashboard/products", name: "Product" },
+      { path: "/dashboard/category", name: "Categories List" },
       
     ],
   },
   {
-    path: "/customers",
+    path: "/dashboard/customers",
     name: "Customers",
     icon: AiOutlineUser,
     
   },
   {
-    path: "/orders",
+    path: "/dashboard/orders",
     name: "Orders",
     icon: AiOutlineShoppingCart,
    
   },
-  { path: "/analytics", name: "Analytics", icon: TbBrandGoogleAnalytics },
+  { path: "/dashboard/analytics", name: "Analytics", icon: TbBrandGoogleAnalytics },
   {
     path: "/",
     name: "Settings",

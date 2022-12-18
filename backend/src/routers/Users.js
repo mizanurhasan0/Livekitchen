@@ -16,7 +16,7 @@ const router = require("express").Router();
 router.post("/user", ResponseHandler(Create));
 router.get("/user", ResponseHandler(getAll));
 router.get("/user/:id", ResponseHandler(getOne));
-router.get("/userprofile", ResponseHandler(loadUser));
+router.get("/userprofile",auth, ResponseHandler(loadUser));
 
 router.get("/logout", auth, ResponseHandler(logOut));
 router.post("/login", ResponseHandler(logIn));
