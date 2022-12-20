@@ -23,17 +23,15 @@ const ResponseHandler = (modelEntity) => {
     modelEntity(httpRequest)
       .then((respon) => {
         if (respon?.cookie === "set") {
+        
           res.cookie(process.env.COOKIE_NAME, respon?.token, {
             httpOnly: true,
-            sameSite: "None",
           });
 
           // delete respon.cookie;
         } else if (respon?.cookie === "unset") {
           res.clearCookie(process.env.COOKIE_NAME, {
             httpOnly: true,
-            sameSite: "None",
-            secure: true,
           });
           delete respon.cookie;
         }

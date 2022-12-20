@@ -1,14 +1,22 @@
-import Sidebar from "./Components/SideBar/Sidebar";
-import UserProvider from "./Context/UserCtx/UserProvider";
+import UserCtx from "./Context/UserCtx";
 import RoutingCon from "./Layout/Routing/RoutingCon";
 
 function App() {
+  const { isLoading } = UserCtx();
   return (
-    <div className="App bg-bg">
-      <UserProvider>
-        <RoutingCon />
-      </UserProvider>
-    </div>
+    <>
+      {isLoading ? (
+        <div className="App bg-bg">
+          <RoutingCon />
+        </div>
+      ) : (
+        <div class="flex justify-center items-center t-10">
+        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+          <span class="visually-hidden">.</span>
+        </div>
+      </div>
+      )}
+    </>
   );
 }
 

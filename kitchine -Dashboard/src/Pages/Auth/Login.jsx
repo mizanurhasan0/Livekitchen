@@ -1,21 +1,31 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { logo2 } from "../../Assets/Index";
 import Btn from "../../Components/Shares/Btn";
 import Input from "../../Components/Shares/Input";
-import UserCtx from "../../Context/UserCtx";
+import UserCtx from "../../Context/UserCtx/index";
 import UseRequest from "../../Hooks/UseRequest";
 
 export default function Login() {
+  // Declieration 
   const { register, handleSubmit } = useForm();
-  const {user:[user,setUser]}=UserCtx();
-
-  const req = UseRequest();
+  const {user,setUser}=UserCtx();
+    const req = UseRequest();
+const navigate=useNavigate()
+    // Function
   const login = (data) => {
-    req({ uri: "login", method: "POST", data: data }).then(res=>setUser(res.loginProfile))
+    req({ uri: "login", method: "POST", data: data }).then(res=>{
+      console.log(res)
+      if(res.status===200){
+        setUser(res.userProfile);
+        navigate("/dashboard")
+      }
+    })
     ;
+
   };
-  console.log(user)
+ 
   return (
     <section className="h-screen">
       <div className="container px-6 h-full ">

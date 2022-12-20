@@ -115,7 +115,7 @@ const loadUser = async (req) => {
       table: TABLE,
       reqBody: { body: { _id: req.user.id } },
     });
-    console.log(userProfile)
+   
     if (!userProfile) return { status: 400, reason: "Invalid request" };
     return { userProfile };
   } catch (err) {
