@@ -8,24 +8,22 @@ import UserCtx from "../../Context/UserCtx/index";
 import UseRequest from "../../Hooks/UseRequest";
 
 export default function Login() {
-  // Declieration 
+  // Declieration
   const { register, handleSubmit } = useForm();
-  const {user,setUser}=UserCtx();
-    const req = UseRequest();
-const navigate=useNavigate()
-    // Function
+  const { user, setUser } = UserCtx();
+  const req = UseRequest();
+  const navigate = useNavigate();
+  // Function
   const login = (data) => {
-    req({ uri: "login", method: "POST", data: data }).then(res=>{
-      console.log(res)
-      if(res.status===200){
+    req({ uri: "login", method: "POST", data: data }).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
         setUser(res.userProfile);
-        navigate("/dashboard")
+        navigate("/dashboard");
       }
-    })
-    ;
-
+    });
   };
- 
+
   return (
     <section className="h-screen">
       <div className="container px-6 h-full ">

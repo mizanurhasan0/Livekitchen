@@ -1,13 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import Pagination from "../../Utils/Pagination";
 import SearchBar from "../Shares/SearchBar/SearchBar";
-import Tables from "../Shares/Tables";
+import { TblProductHeader } from "../Shares/StaticData";
+import ShareTable from "../Shares/ShareTable";
 import TitleBar from "../Shares/TitleBar";
+import Pagination1 from "../Shares/Pagination1";
+import UseRequest from "../../Hooks/UseRequest";
+import { useEffect } from "react";
 
 export default function Products() {
-  const [currentPosts, setCurrentPosts] = useState(false);
-
+  const [currentPosts, setCurrentPosts] = useState([]);
+  const req = UseRequest();
+  // Function
+  useEffect(() => {
+    req({ uri: "products", method: "GET" }).then((res) => {
+      setCurrentPosts(res?.data);
+    //  console.log(res)
+    });
+  }, []);
+  console.log(currentPosts)
   return (
     <div className="py-10 px-5 bg-parag min-h-screen">
       <TitleBar title="Product list" btnName="Add product" />
@@ -28,9 +39,9 @@ export default function Products() {
             <option value="reeses">Reeses</option>
           </select>
         </div>
-        <Tables tblData={currentPosts} />
+        <ShareTable tblData={currentPosts} tblHeader={TblProductHeader} />
         <div className="block text-center py-5 space-x-1 ">
-          <Pagination setCurrentPosts={setCurrentPosts} />
+          {/* <Pagination1 setCurrentPosts={setCurrentPosts} /> */}
         </div>
       </div>
     </div>

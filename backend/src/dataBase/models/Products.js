@@ -21,9 +21,17 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    buy: {
+      type: Number,
+      required: true,
+    },
     category: {
       type: Schema.Types.ObjectId,
       ref: "Category",
+    },
+    qty: {
+      type: Number,
+      default: 0,
     },
     countInStock: {
       type: Number,

@@ -5,7 +5,7 @@ import AddProduct from "../Modal/AddProduct";
 export default function TitleBar({ title, btnName }) {
   const [visible, setVisible] = useState(false);
   return (
-    <div className="flex justify-between mb-5">
+    <div className="flex justify-between mb-5 bg-txt rounded-md pl-5 py-2">
       <h1 className="text-[1.5rem] font-[600]">{title}</h1>
       <button onClick={()=>setVisible(!visible)} className="bg-primary text-txt px-2 rounded-md ">
         {btnName}

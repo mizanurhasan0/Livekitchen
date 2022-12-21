@@ -13,14 +13,13 @@ import { MdOutlineBlender } from "react-icons/md";
 import { GiCoffeeMug } from "react-icons/gi";
 import { TbToolsKitchen, TbBrandGoogleAnalytics } from "react-icons/tb";
 
-let OrdersNav=[
-  { path: "/orders", name: "All Orders",active:null  },
-  { path: "/orders?status=pending", name: "Pending",active:"pending" },
-  { path: "/orders?status=delivered", name: "Delivered",active:"delivered" },
-  { path: "/orders?status=paid", name: "Paid",active:"paid" },
-  { path: "/orders?status=unpaid", name: "Unpaid",active:"unpaid" },
-
-]
+let OrdersNav = [
+  { path: "/orders", name: "All Orders", active: null },
+  { path: "/orders?status=pending", name: "Pending", active: "pending" },
+  { path: "/orders?status=delivered", name: "Delivered", active: "delivered" },
+  { path: "/orders?status=paid", name: "Paid", active: "paid" },
+  { path: "/orders?status=unpaid", name: "Unpaid", active: "unpaid" },
+];
 let SideMenuItem = [
   { path: "/dashboard", name: "Dashboard", icon: AiOutlineDashboard },
   {
@@ -28,25 +27,25 @@ let SideMenuItem = [
     name: "Products",
     icon: AiOutlineDatabase,
     subItems: [
-     
       { path: "/dashboard/products", name: "Product" },
       { path: "/dashboard/category", name: "Categories List" },
-      
     ],
   },
   {
     path: "/dashboard/customers",
     name: "Customers",
     icon: AiOutlineUser,
-    
   },
   {
     path: "/dashboard/orders",
     name: "Orders",
     icon: AiOutlineShoppingCart,
-   
   },
-  { path: "/dashboard/analytics", name: "Analytics", icon: TbBrandGoogleAnalytics },
+  {
+    path: "/dashboard/analytics",
+    name: "Analytics",
+    icon: TbBrandGoogleAnalytics,
+  },
   {
     path: "/",
     name: "Settings",
@@ -236,4 +235,34 @@ let tableDb = {
     },
   ],
 };
-export { SideMenuItem, orderHistory, tableDb,OrdersNav };
+let TblProductHeader = [
+  {
+    name: "Name",
+    key: "name",
+  },
+  {
+    name: "Status",
+    key: "status",
+  },
+  {
+    name: "Category",
+    key: "category",
+  },
+  {
+    name: "Qty",
+    key: "qty",
+  },
+  {
+    name: "Price",
+    key: "price",
+  },
+  {
+    name: "Buy",
+    key: "buy",
+  },
+  {
+    name: "Listing Date",
+    key: "date",
+  },
+];
+export { SideMenuItem, orderHistory, tableDb, OrdersNav,TblProductHeader };

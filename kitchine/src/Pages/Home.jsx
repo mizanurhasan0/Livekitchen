@@ -24,6 +24,7 @@ export default function Home() {
         </div>
       </div>
       <NewSugPro title="Top new Arrival " />
+      
     </div>
   );
 }

@@ -6,12 +6,16 @@ const TABLE = "products";
 const Create = async (req) => {
   try {
     const images = CheckImageSize(req);
+
     if (images.check) {
       const newInstance = await db.Create({
         table: TABLE,
         reqBody: { ...req.body, images: images.images },
       });
-
+   
+      if (newInstance.status === 400) {
+        DeleteImages(req);
+      }
       return { newInstance };
     } else {
       return { error: "Image size not more than 1MB" };
