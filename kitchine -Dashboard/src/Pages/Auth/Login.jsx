@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logo2 } from "../../Assets/Index";
 import Btn from "../../Components/Shares/Btn";
 import Input from "../../Components/Shares/Input";
+import AlertToster from "../../Components/Shares/Toastify/AlertToster";
 import UserCtx from "../../Context/UserCtx/index";
 import UseRequest from "../../Hooks/UseRequest";
 
@@ -19,7 +20,10 @@ export default function Login() {
       console.log(res);
       if (res.status === 200) {
         setUser(res.userProfile);
+        AlertToster("Success", "success");
         navigate("/dashboard");
+      } else {
+        AlertToster("Something went wrong", "error");
       }
     });
   };
@@ -29,7 +33,7 @@ export default function Login() {
       <div className="container px-6 h-full ">
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
           <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-            <img src={logo2} className=" h-[70vh]" alt="Sample image" />
+            <img src={logo2} className="h-[60vh] w-[60vw]" alt="Sample image" />
           </div>
           <div
             className="bg-primary bg-opacity-10 rounded-md shadow-md p-5 xl:ml-20 xl:w-5/12 lg:w-6/12 

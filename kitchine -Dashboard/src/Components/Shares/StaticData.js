@@ -89,7 +89,7 @@ let tableDb = {
     },
     {
       name: "Listing Date",
-      key: "date",
+      key: "createdDate",
       isImage: false,
     },
   ],
@@ -242,7 +242,7 @@ let TblProductHeader = [
   },
   {
     name: "Status",
-    key: "status",
+    key: "isActive",
   },
   {
     name: "Category",
@@ -262,7 +262,7 @@ let TblProductHeader = [
   },
   {
     name: "Listing Date",
-    key: "date",
+    key: "createdDate",
   },
 ];
-export { SideMenuItem, orderHistory, tableDb, OrdersNav,TblProductHeader };
+export { SideMenuItem, orderHistory, tableDb, OrdersNav, TblProductHeader };

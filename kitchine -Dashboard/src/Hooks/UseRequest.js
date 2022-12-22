@@ -4,10 +4,10 @@ export default function UseRequest() {
       method,
       body: JSON.stringify(data),
       credentials: "include",
-      
+
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(res=>res.json());
+    }).then((res) => res.json());
   };
 }

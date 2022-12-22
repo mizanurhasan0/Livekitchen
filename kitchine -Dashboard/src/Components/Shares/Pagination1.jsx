@@ -1,32 +1,30 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import UseRequest from "../../Hooks/UseRequest";
 import { tableDb } from "./StaticData";
 
-export default function Pagination1({ setCurrentPosts }) {
-  const [tblDate, setTblDate] = useState(tableDb);
+export default function Pagination1({ products, setCurrentProducts }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage, setPostsPerPage] = useState(
+    process.env.REACT_APP_PRODUCT_PER_PAGE
+  );
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
 
   useEffect(() => {
-    setCurrentPosts({
-      ...tableDb,
-      data: tableDb.data.slice(firstPostIndex, lastPostIndex),
-    });
+    setCurrentProducts(products.slice(firstPostIndex, lastPostIndex));
   }, [currentPage]);
 
   const changePage = (val, type) => {
     type === "pre" && currentPage > 1 && setCurrentPage((v) => v - 1);
 
     type === "next" &&
-      currentPage < Math.ceil(tblDate.data.length / postsPerPage) &&
+      currentPage < Math.ceil(products.length / postsPerPage) &&
       setCurrentPage((v) => v + 1);
 
     type === "field" &&
       val > 0 &&
-      val <= Math.ceil(tblDate.data.length / postsPerPage) &&
+      val <= Math.ceil(products.length / postsPerPage) &&
       setCurrentPage(val);
   };
   return (
@@ -45,7 +43,7 @@ export default function Pagination1({ setCurrentPosts }) {
           onChange={(e) => changePage(e.target.value, "field")}
           className="w-10 border-primary border text-center outline-none rounded-md "
         />
-        of {Math.ceil(tblDate.data.length / postsPerPage)}
+        of {Math.ceil(products.length / postsPerPage)}
       </span>
       <button
         onClick={() => changePage(currentPage, "next")}

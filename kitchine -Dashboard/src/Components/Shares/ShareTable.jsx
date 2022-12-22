@@ -20,6 +20,7 @@ const ShareTable = ({ tblData = {}, tblHeader = {}, action = true }) => {
               </th>
             );
           })}
+
           {action && <th scope="col" className=" w-10  px-6 py-4 "></th>}
         </tr>
       </thead>
@@ -30,10 +31,21 @@ const ShareTable = ({ tblData = {}, tblHeader = {}, action = true }) => {
               key={data?.id}
               className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
             >
-              {Object.keys(data).map((d, i) => (
-                <td key={i} className="px-6 py-4 whitespace-nowrap text-sm ">
-                  {i === 0 && <img src={`http://localhost:5001/images/pro1-1671643194497.jpg`} alt="product" />}
-                  {data[d]}
+              {tblHeader.map((name, key) => (
+                <td key={key} className="px-6 py-4 whitespace-nowrap text-sm ">
+                  {key === 0 && (
+                    <img
+                      className="w-12"
+                      crossOrigin="anonymous"
+                      src={process.env.REACT_APP_URL_IMG + `/${data.images[0]}`}
+                      alt="product"
+                    />
+                  )}
+                  {typeof data[name.key] === "boolean"
+                    ? data[name.key] === true
+                      ? "Live"
+                      : "Down"
+                    : data[name.key]}
                 </td>
               ))}
 
