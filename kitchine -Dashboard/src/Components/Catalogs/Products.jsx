@@ -8,18 +8,21 @@ import Pagination1 from "../Shares/Pagination1";
 import UseRequest from "../../Hooks/UseRequest";
 import { useEffect } from "react";
 import Loading from "../Loading/Loading";
+import AddProduct from "../Modal/Products/AddProduct";
+import Dropdown from "../Shares/Dropdown";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [currentProducts, setCurrentProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const req = UseRequest();
   // Function
   useEffect(() => {
     setLoading(true);
     req({ uri: "products", method: "GET" }).then((res) => {
       setProducts(res?.data);
-      //  console.log(res)
+        console.log(res)
       setCurrentProducts(
         res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
       );
@@ -28,23 +31,18 @@ export default function Products() {
   }, []);
   return (
     <div className="py-10 px-5 bg-parag min-h-screen">
-      <TitleBar title="Product list" btnName="Add product" />
+      <TitleBar
+        title="Product list"
+        btnName="Add product"
+        openModal={setOpenModal}
+      />
 
       <div className="bg-txt overflow-x-scroll">
         <div className=" py-5 grid grid-cols-4 gap-5 px-5">
           <div className="col-span-3">
             <SearchBar />
           </div>
-          <select
-            className="border-2 w-full col-span-1"
-            name="dog-names"
-            id="dog-names"
-          >
-            <option value="rigatoni">Active</option>
-            <option value="dave">Dave</option>
-            <option value="pumpernickel">Pumpernickel</option>
-            <option value="reeses">Reeses</option>
-          </select>
+          <Dropdown/>
         </div>
         {!loading ? (
           <>
@@ -63,6 +61,11 @@ export default function Products() {
           <Loading />
         )}
       </div>
+      {openModal && (
+        <div className="absolute">
+          <AddProduct onClick={() => setOpenModal(false)} />
+        </div>
+      )}
     </div>
   );
 }

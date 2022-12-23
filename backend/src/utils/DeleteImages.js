@@ -1,16 +1,26 @@
 const fs = require("fs");
 const db=require("../dataBase/index.js")
-const PATH="images/"
 
-const DeleteImages =async (req, tableName) => {
-  console.log(req.params.id)
+const DeleteImages =async (req,tableName) => {
+  const folder=req.path.replace("/","");
   if (!req.params.id) {
     for (let i in req.files) {
-      fs.unlink("images/" + req.files[i].filename, (err) => {
+      if(folder==="products"){
+
+        fs.unlink(`images/${folder}/` + req.files[i].filename, (err) => {
+          if (err) {
+            throw err;
+          }
+        });
+     }else if(folder==="category"){
+      fs.unlink(`images/${folder}/` + req.files[i].filename, (err) => {
         if (err) {
           throw err;
         }
       });
+     }
+
+    
     }
   }else{
     try {
@@ -20,8 +30,8 @@ const DeleteImages =async (req, tableName) => {
       });
       if (!newInstance) throw new Error("Images can't deleted!")
       for (let i in newInstance.images) {
-        fs.existsSync(PATH+newInstance?.images[i]) &&
-        fs.unlink(PATH + newInstance?.images[i], (err) => {
+        fs.existsSync(`images/${tableName}/`+newInstance?.images[i]) &&
+        fs.unlink(`images/${tableName}/` + newInstance?.images[i], (err) => {
           if (err) {
             throw new Error("Something went wrong"+err);
           }

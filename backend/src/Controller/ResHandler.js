@@ -1,4 +1,3 @@
-const DeleteImages = require("../utils/DeleteImages");
 
 const ResponseHandler = (modelEntity) => {
 

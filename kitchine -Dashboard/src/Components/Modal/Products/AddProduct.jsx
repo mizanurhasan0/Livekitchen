@@ -1,12 +1,12 @@
-import React, { useMemo, useRef, useState } from "react";
-import Btn from "../Shares/Btn";
-import Dropdown from "../Shares/Dropdown";
-import Input from "../Shares/Input";
-import TextArea from "../Shares/TextArea";
-import UploadImgs from "../Shares/UploadImgs";
-import "./styleModal.css";
+import React from "react";
+import Btn from "../../Shares/Btn";
+import Dropdown from "../../Shares/Dropdown";
+import Input from "../../Shares/Input";
+import TextArea from "../../Shares/TextArea";
+import UploadImgs from "../../Shares/UploadImgs";
+import "../styleModal.css";
 
-export default function AddProduct() {
+export default function AddProduct({onClick=()=>{}}) {
   return (
     <div className="modal ">
       {/* image upload */}
@@ -15,8 +15,9 @@ export default function AddProduct() {
         <div className=" bg-primary py-4 mb-10 text-txt text-2xl text-center rounded-md uppercase">
           Add product
         </div>
-        <form className="w-full max-w-lg">
-          <div className="flex flex-col -mx-3 mb-6">
+        
+        <form className="w-full">
+          <div className="flex flex-col mb-6">
             {/* images */}
            <div>
             <UploadImgs/>
@@ -32,7 +33,10 @@ export default function AddProduct() {
             </div>
             <TextArea cStyle={"mt-5"} label="Product Description"/>
 
-            <Btn cStyle={"mt-5"} child={"Save"}/>
+           <div className="mt-5 flex justify-between  space-x-10">
+           <Btn cStyle={"w-full text-primary bg-txt"} child={"close"}  onClick={onClick}/>
+           <Btn cStyle={"w-full "} child={"Save"}/>
+           </div>
             </div>
         </form>
       </div>

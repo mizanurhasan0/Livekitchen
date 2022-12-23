@@ -5,8 +5,12 @@ const UPLOAD_FOLDER = "./images/";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-   
-    cb(null, UPLOAD_FOLDER);
+  if(req.url.replace("/","")==="products"){
+
+    cb(null, UPLOAD_FOLDER+"products/");
+  }else if(req.url.replace("/","")==="category"){
+    cb(null, UPLOAD_FOLDER+"category/");
+  }
   },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname);

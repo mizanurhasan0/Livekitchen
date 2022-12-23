@@ -37,7 +37,7 @@ const ShareTable = ({ tblData = {}, tblHeader = {}, action = true }) => {
                     <img
                       className="w-12"
                       crossOrigin="anonymous"
-                      src={process.env.REACT_APP_URL_IMG + `/${data.images[0]}`}
+                      src={process.env.REACT_APP_URL_IMG + `/products/${data.images[0]}`}
                       alt="product"
                     />
                   )}
@@ -45,7 +45,7 @@ const ShareTable = ({ tblData = {}, tblHeader = {}, action = true }) => {
                     ? data[name.key] === true
                       ? "Live"
                       : "Down"
-                    : data[name.key]}
+                    :name.key==="category"?data[name.key].name: data[name.key]}
                 </td>
               ))}
 

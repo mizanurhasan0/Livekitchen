@@ -78,13 +78,13 @@ const getOne = async (req) => {
     if (!newInstance) return { status: 404, reason: "No data found" };
     return { newInstance };
   } catch (err) {
-    throw new Error("Something went wrong");
+    throw new Error("Something went wrong"+err);
   }
 };
 
 const getAll = async (req) => {
   try {
-    const data = await db.find({ table: TABLE, reqBody: { body: req.query } });
+    const data = await db.find({ table: TABLE, reqBody: { body: req.query },options: { populate: { path: 'category', select: 'name' } } });
     return { data };
   } catch (err) {
     console.log(err);

@@ -1,13 +1,26 @@
 const db = require("../dataBase/index");
+const CheckImageSize = require("../utils/CheckImgSize");
+const DeleteImages = require("../utils/DeleteImages");
 
 const TABLE = "category";
 
 const Create = async (req) => {
   const { name, image, icon } = req.body;
   try {
-    if (!name) {
-      const newInstance = await db.Create({ table: TABLE, reqBody: req.body });
-      return { newInstance };
+    if (!name||!image) {
+      const images = CheckImageSize(req);
+      if (images.check) {
+        const newInstance = await db.Create({
+          table: TABLE,
+          reqBody: req.body,
+        });
+        if (newInstance.status === 400) {
+          DeleteImages(req);
+        }
+        return { newInstance };
+      } else {
+        return { error: "Image size not more than 1MB" };
+      }
     }
   } catch (error) {
     throw new Error("Something went wrong.");
@@ -17,19 +30,23 @@ const Create = async (req) => {
 const remove = async (req) => {
   try {
     if (!req.params.id) return { status: 400, reason: "Invalid request" };
-    const data = await db.remove({ table: TABLE, reqBody: { findBy: { _id: req.params.id } } });
-    if (!data) return { status: 404, reason: 'User not found.' };
+    const data = await db.remove({
+      table: TABLE,
+      reqBody: { findBy: { _id: req.params.id } },
+    });
+    if (!data) return { status: 404, reason: "User not found." };
     return { status: 200, data };
   } catch (err) {
     console.log(err);
-    throw new Error('Something went wrong');
+    throw new Error("Something went wrong");
   }
 };
 
 const update = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
-
+    // this here would be a condition from files uploaded or not using req
+    DeleteImages(req, TABLE);
     const newCate = await db.update({
       table: TABLE,
       reqBody: { findBy: { _id: req.params.id }, body: req.body },
