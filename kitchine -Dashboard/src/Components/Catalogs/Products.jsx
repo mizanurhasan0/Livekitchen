@@ -22,13 +22,13 @@ export default function Products() {
     setLoading(true);
     req({ uri: "products", method: "GET" }).then((res) => {
       setProducts(res?.data);
-        console.log(res)
       setCurrentProducts(
         res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
       );
       setLoading(false);
     });
   }, []);
+  // 
   return (
     <div className="py-10 px-5 bg-parag min-h-screen">
       <TitleBar
@@ -63,7 +63,7 @@ export default function Products() {
       </div>
       {openModal && (
         <div className="absolute">
-          <AddProduct onClick={() => setOpenModal(false)} />
+          <AddProduct onClick={() => setOpenModal(!openModal)} />
         </div>
       )}
     </div>

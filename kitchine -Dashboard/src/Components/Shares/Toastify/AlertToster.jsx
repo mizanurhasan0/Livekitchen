@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 const AlertToster = (message, variant) => {
   if (!["success", "error", "warning"].includes(variant)) throw Error();
   toast[`${variant}`](message, {
-    position: "top",
+    position:"top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,

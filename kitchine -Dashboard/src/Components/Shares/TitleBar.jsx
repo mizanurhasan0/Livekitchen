@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import AddProduct from "../Modal/Products/AddProduct";
 import Btn from "./Btn";
 
 export default function TitleBar({ title, btnName,openModal }) {

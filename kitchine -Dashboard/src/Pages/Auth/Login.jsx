@@ -75,7 +75,7 @@ export default function Login() {
               </div>
 
               <div className="text-center lg:text-left">
-                <Btn cStyle={"px-14"} child={"LOGIN"} />
+                <Btn cStyle={"px-14"} child={"LOGIN"} type="submit"/>
               </div>
             </form>
           </div>
