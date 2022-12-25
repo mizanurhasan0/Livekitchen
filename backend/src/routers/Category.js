@@ -14,8 +14,8 @@ const CheckImageSize = require("../utils/CheckImgSize");
 
 const router = require("express").Router();
 
-router.post("/category",upload.single("img"), ResponseHandler(Create));
-router.get("/products", ResponseHandler(getAll));
+router.post("/category",upload.array("img",1), ResponseHandler(Create));
+router.get("/category", ResponseHandler(getAll));
 router.get("/products/:id", ResponseHandler(getOne));
 router.patch("/products/remove/:id", auth, ResponseHandler(remove));
 router.patch("/products/update/:id",upload.array("img",5), ResponseHandler(update));

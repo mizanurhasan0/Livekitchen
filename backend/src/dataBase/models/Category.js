@@ -1,14 +1,13 @@
 const { Schema, model } = require("mongoose");
 
-const categorySchema =new Schema(
+const categorySchema = new Schema(
   {
-    name: { type: String, required: true },
-    image: {
+    name: { type: String, required: true, unique: true, lowercase: true },
+    images: [{
       type: String,
-    },
-    icon: {
-      type: String,
-    },
+      required: true,
+    }],
+   
     isActive: {
       type: Boolean,
       default: true,

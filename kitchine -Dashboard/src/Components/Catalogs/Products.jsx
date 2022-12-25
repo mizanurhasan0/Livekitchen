@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import SearchBar from "../Shares/SearchBar/SearchBar";
-import { TblProductHeader } from "../Shares/StaticData";
+import { ActiveOption, TblProductHeader } from "../Shares/StaticData";
 import ShareTable from "../Shares/ShareTable";
 import TitleBar from "../Shares/TitleBar";
 import Pagination1 from "../Shares/Pagination1";
@@ -42,7 +42,7 @@ export default function Products() {
           <div className="col-span-3">
             <SearchBar />
           </div>
-          <Dropdown/>
+          <Dropdown options={ActiveOption}/>
         </div>
         {!loading ? (
           <>

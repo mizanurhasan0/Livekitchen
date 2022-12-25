@@ -3,7 +3,7 @@ import { uploadImg } from "../../Assets/Index";
 import CheckSize from "../../Utils/CheckSIze";
 import AlertToster from "./Toastify/AlertToster";
 
-export default function UploadImgs({ imgs, setImgs }) {
+export default function UploadImgs({ imgs, setImgs,multiple }) {
   const handleFileChange = (event) => {
     const fileSize = event.target.files.length;
     if (fileSize > 0 && fileSize < 5) {
@@ -46,8 +46,8 @@ export default function UploadImgs({ imgs, setImgs }) {
           })
         )}
       </label>
-      <input
-        multiple
+      <input multiple={multiple}
+        
         className="hidden "
         id="formFileLg"
         accept=".png, .jpg, .jpeg"

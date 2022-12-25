@@ -239,30 +239,62 @@ let TblProductHeader = [
   {
     name: "Name",
     key: "name",
+    imgDir:"products"
+
   },
   {
     name: "Status",
     key: "isActive",
+    imgDir:"products"
+
   },
   {
     name: "Category",
     key: "category",
+    imgDir:"products"
+
   },
   {
     name: "Qty",
     key: "qty",
+    imgDir:"products"
+
   },
   {
     name: "Price",
     key: "price",
+    imgDir:"products"
+
   },
   {
     name: "Buy",
     key: "buy",
+    imgDir:"products"
+
   },
   {
     name: "Listing Date",
     key: "createdDate",
+    imgDir:"products"
+
   },
 ];
-export { SideMenuItem, orderHistory, tableDb, OrdersNav, TblProductHeader };
+let TblCategoryHeader = [
+  {
+    name: "Category Name",
+    key: "name",
+    imgDir:"category"
+  },
+  {
+    name: "Visibility",
+    key: "isActive",
+    imgDir:"category"
+  },
+ 
+];
+let ActiveOption= [
+  { name: "Public", value: "true" },
+  { name: "Private", value: "false" },
+];
+
+export { SideMenuItem, orderHistory, tableDb, OrdersNav, TblProductHeader,TblCategoryHeader,ActiveOption };

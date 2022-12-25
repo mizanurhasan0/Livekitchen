@@ -25,19 +25,20 @@ const ShareTable = ({ tblData = {}, tblHeader = {}, action = true }) => {
         </tr>
       </thead>
       <tbody>
-        {tblData.map((data) => {
+        {tblData.map((data,key) => {
           return (
             <tr
-              key={data?.id}
+              key={key}
               className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
             >
               {tblHeader.map((name, key) => (
+                
                 <td key={key} className="px-6 py-4 whitespace-nowrap text-sm ">
                   {key === 0 && (
                     <img
                       className="w-12"
                       crossOrigin="anonymous"
-                      src={process.env.REACT_APP_URL_IMG + `/products/${data.images[0]}`}
+                      src={process.env.REACT_APP_URL_IMG + `/${name.imgDir}/${data.images[0]}`}
                       alt="product"
                     />
                   )}

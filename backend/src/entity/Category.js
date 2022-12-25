@@ -5,23 +5,26 @@ const DeleteImages = require("../utils/DeleteImages");
 const TABLE = "category";
 
 const Create = async (req) => {
-  const { name, image, icon } = req.body;
+  // const { name, images, icon } = req.body;
+  // console.log(req)
   try {
-    if (!name||!image) {
+   
       const images = CheckImageSize(req);
+      // console.log(images)
       if (images.check) {
         const newInstance = await db.Create({
           table: TABLE,
-          reqBody: req.body,
+          reqBody:  { ...req.body, images: images.images },
         });
         if (newInstance.status === 400) {
           DeleteImages(req);
         }
+        // console.log(newInstance)
         return { newInstance };
       } else {
         return { error: "Image size not more than 1MB" };
       }
-    }
+    
   } catch (error) {
     throw new Error("Something went wrong.");
   }
