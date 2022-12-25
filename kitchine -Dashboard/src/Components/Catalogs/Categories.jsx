@@ -22,13 +22,13 @@ useEffect(() => {
   setLoading(true);
   req({ uri: "category", method: "GET" }).then((res) => {
    
-    setCategory(res?.data);
+    setCategory(res?.data.reverse());
     setCurrentCategory(
       res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
     );
     setLoading(false);
   });
-}, []);
+}, [openModal]);
 // 
   return (
     <div className='py-10 px-5 bg-parag min-h-screen'>

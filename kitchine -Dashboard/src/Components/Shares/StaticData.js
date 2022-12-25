@@ -293,8 +293,8 @@ let TblCategoryHeader = [
  
 ];
 let ActiveOption= [
-  { name: "Public", value: "true" },
-  { name: "Private", value: "false" },
+  { name: "Public", _id: "true" },
+  { name: "Private", _id: "false" },
 ];
 
 export { SideMenuItem, orderHistory, tableDb, OrdersNav, TblProductHeader,TblCategoryHeader,ActiveOption };

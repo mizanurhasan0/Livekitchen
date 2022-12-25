@@ -1,24 +1,65 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import UseFormRequest from "../../../Hooks/UseFormRequest";
+import UseRequest from "../../../Hooks/UseRequest";
 import Btn from "../../Shares/Btn";
 import Dropdown from "../../Shares/Dropdown";
 import Input from "../../Shares/Input";
 import TextArea from "../../Shares/TextArea";
+import AlertToster from "../../Shares/Toastify/AlertToster";
 import UploadImgs from "../../Shares/UploadImgs";
 import "../styleModal.css";
 
 export default function AddProduct({ onClick = () => {} }) {
-  const { register, handleSubmit } = useForm();
-  const [images,setImages]=useState([])
+  const { register, handleSubmit, reset } = useForm();
+  const [images, setImages] = useState([]);
+  const [category, setCategory] = useState([]);
+  const req = UseRequest();
+  const reqF = UseFormRequest();
 
-
+  useEffect(() => {
+    req({ uri: "category", method: "GET" }).then((res) =>
+      setCategory(res.data)
+    );
+  }, []);
   // on Submit
-  const onSubmit = (data) =>{
+  const onSubmit = (data) => {
+    try {
+      if (images.length !== 0) {
+        let formData = new FormData();
+        for (let i = 0; i < images.length; i++) {
+          console.log(i)
+          formData.append("img", images[i]);
+        }
+       console.log(formData.get("img"))
+        formData.append("name", data.name);
+        formData.append("description", data.description);
+        formData.append("brand", data.brand);
+        formData.append("price", data.price);
+        formData.append("buy", data.buy);
+        formData.append("category", data.category);
+        formData.append("qty", data.qty);
 
-    console.log(data)
+        // reqF({
+        //   uri: "category",
+        //   method: "POST",
+        //   data: formData,
+        // }).then((res) => {
+        //   if (res.newInstance) {
+        //     AlertToster("Add Category!", "success");
+        //     reset();
+        //     setImages([]);
+        //     onClick();
+        //   } else {
+        //     AlertToster("Something went wrong", "error");
+        //   }
+        // });
+      }
+    } catch (error) {}
   };
-  // 
+  //
   return (
     <div className="modal ">
       {/* image upload */}
@@ -32,7 +73,7 @@ export default function AddProduct({ onClick = () => {} }) {
           <div className="flex flex-col mb-6">
             {/* images */}
             <div>
-              <UploadImgs imgs={images} setImgs={setImages} multiple={true}/>
+              <UploadImgs imgs={images} setImgs={setImages} multiple={true} />
             </div>
             {/*  */}
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -45,18 +86,22 @@ export default function AddProduct({ onClick = () => {} }) {
                 register={{ ...register("brand", { required: true }) }}
               />
               <Input
-                label={"Price"} type="number"
+                label={"Price"}
+                type="number"
                 register={{ ...register("price", { required: true }) }}
               />
               <Input
-                label={"Buy Price"}  type="number"
+                label={"Buy Price"}
+                type="number"
                 register={{ ...register("buy", { required: true }) }}
               />
               <Input
-                label={"Quantity"}  type="number"
+                label={"Quantity"}
+                type="number"
                 register={{ ...register("qty", { required: true }) }}
               />
               <Dropdown
+                options={category}
                 register={{ ...register("category", { required: true }) }}
               />
             </div>

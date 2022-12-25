@@ -6,7 +6,7 @@ const TABLE = "category";
 
 const Create = async (req) => {
   // const { name, images, icon } = req.body;
-  // console.log(req)
+  //  console.log(req)
   try {
    
       const images = CheckImageSize(req);

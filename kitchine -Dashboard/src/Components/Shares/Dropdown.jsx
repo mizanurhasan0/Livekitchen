@@ -8,7 +8,7 @@ export default function Dropdown({ register, options }) {
     >
       {options.map((option, key) => {
         return (
-          <option key={key} value={`${option.value}`}>
+          <option key={key} value={`${option._id}`}>
             {option?.name}
           </option>
         );

@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const router = require("./routers");
 const cookieParser = require("cookie-parser");
+const bodyParser=require("body-parser")
 const helmet = require("helmet");
 
 const app = express();
@@ -12,7 +13,11 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 // Public directory
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,

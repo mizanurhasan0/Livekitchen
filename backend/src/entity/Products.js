@@ -14,7 +14,7 @@ const Create = async (req) => {
       });
    
       if (newInstance.status === 400) {
-        DeleteImages(req);
+        // DeleteImages(req);
       }
       return { newInstance };
     } else {

@@ -2,7 +2,7 @@
 const ResponseHandler = (modelEntity) => {
 
   return (req, res) => {
-    
+
     const httpRequest = {
       files: req.files,
       // file: req.file,
