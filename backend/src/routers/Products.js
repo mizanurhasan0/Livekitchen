@@ -7,6 +7,7 @@ const {
   remove,
   update,
   getOne,
+  getProductByCategory,
 } = require("../entity/Products");
 const auth = require("../middleware/Auth");
 const upload = require("../utils/UploadImg");
@@ -38,6 +39,7 @@ router.get("/img", (req,res)=>{
 router.post("/products",upload.array("img",5), ResponseHandler(Create));
 router.get("/products", ResponseHandler(getAll));
 router.get("/products/:id", ResponseHandler(getOne));
+router.get("/products/category/:id", ResponseHandler(getProductByCategory));
 router.patch("/products/remove/:id", auth, ResponseHandler(remove));
 router.patch("/products/update/:id",upload.array("img",5), ResponseHandler(update));
 

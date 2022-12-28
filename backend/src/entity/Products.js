@@ -91,11 +91,24 @@ const getAll = async (req) => {
     throw new Error("Something went wrong");
   }
 };
-
+const getProductByCategory = async (req) => {
+  try {
+    if (!req.params.id) return { status: 400, reason: "Invalid request" };
+    const newInstance = await db.find({
+      table: TABLE,
+      reqBody: { body: { category: req.params.id } },
+    });
+    if (!newInstance) return { status: 404, reason: "No data found" };
+    return { newInstance };
+  } catch (err) {
+    throw new Error("Something went wrong" + err);
+  }
+};
 module.exports = {
   getAll,
   Create,
   remove,
   getOne,
   update,
+  getProductByCategory
 };

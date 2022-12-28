@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ProductSpec = () => {
+const ProductSpec = ({productData}) => {
   const [toggleState, setToggleState] = useState(1);
   // console.log(ProductsData[0]);
   return (
@@ -50,9 +50,7 @@ const ProductSpec = () => {
             <h2 className="text-2xl uppercase">Content 1</h2>
             <hr className=" border-yellow-500" />
             <p className="text-xl text-justify pt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-              praesentium incidunt quia aspernatur quasi quidem facilis quo
-              nihil vel voluptatum?
+              {productData?.description}
             </p>
           </div>
 

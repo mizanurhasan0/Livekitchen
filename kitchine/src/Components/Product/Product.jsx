@@ -11,18 +11,19 @@ export default function Product({ cardInfo }) {
       <p className="absolute bg-primary text-white -right-1 top-4 px-auto px-1 md:px-2 uppercase md:font-bold z-10">
         new
       </p>
-      <img
-        onClick={() => navigate(`/${cardInfo?.id}`)}
-        src={cardInfo.images[0]}
+      <img crossOrigin="anonymous"
+        onClick={() => navigate(`/${cardInfo?._id}`)}
+        src={process.env.REACT_APP_URL_IMG+'/products/'+cardInfo.images[0]}
         alt="img"
-        className="cursor-pointer  hover:scale-105 duration-500"
+        className="cursor-pointer hover:scale-105 duration-500
+        h-80"
       />
       <h1 className="md:text-xl uppercase py-2">{cardInfo.name}</h1>
 
       <p className="font-light pb-2 text-xl">
-        {cardInfo.Price}
+        {cardInfo.price}
         <span className="line-through text-gray-400 pl-2 font-normal text-base">
-          {cardInfo.oldPrice}
+          {cardInfo.buy}
         </span>
       </p>
 

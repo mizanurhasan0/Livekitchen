@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaShoppingCart } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import UseRequest from "../../Hooks/UseRequest";
 
 import Btn from "../Shares/Btn";
 import { ProductsData } from "../Shares/StaticData";
@@ -8,25 +10,26 @@ import { ProductsData } from "../Shares/StaticData";
 import "./productDetails.css";
 import ProductFooter from "./ProductFooter";
 
-export const ProductInfo = () => {
+export const ProductInfo = ({productData}) => {
   const [imgInfo, setImgInfo] = useState({
-    activeImgURL: ProductsData[0].images[0],
+    activeImgURL: [],
     upAnkerTag: false,
     downAnkerTag: true,
   });
-  const imagesList = ProductsData[0].images;
-
-  // for changing image on click
-  const onChnageImage = (id) => {
-    Object.keys(imagesList).forEach((key) => {
-      imagesList[key] === imagesList[id] &&
-        setImgInfo({
-          ...imgInfo,
-          activeImgURL: imagesList[id],
-        });
-    });
-  };
-
+ 
+  //  const imagesList = [];
+  // // for changing image on click
+  // const onChnageImage = (id) => {
+  //   Object.keys(imagesList).forEach((key) => {
+  //     imagesList[key] === imagesList[id] &&
+  //       setImgInfo({
+  //         ...imgInfo,
+  //         activeImgURL: imagesList[id],
+  //       });
+  //   });
+  // };
+  // Load Single product Info
+ 
   return (
     <div className=" mb-10 font-Audiowide ">
       <div className="md:grid grid-cols-5 gap-5 text-center md:text-start space-y-5">
@@ -34,8 +37,8 @@ export const ProductInfo = () => {
         <div className="col-span-3 grid grid-rows-6 h-[30rem] ">
           <div className=" row-span-5 shadow-black p-3">
             {/* Image */}
-            <img
-              src={imgInfo?.activeImgURL}
+            <img crossOrigin="anonymous"
+              src={process.env.REACT_APP_URL_IMG+"/products/"+productData?.images[0]}
               alt=""
               className="h-full w-full object-cover rounded-md shadow-xl"
             />
@@ -43,21 +46,24 @@ export const ProductInfo = () => {
           <div className="row-span-1 flex overflow-hidden">
             <div className="flex w-auto overflow-x-scroll no-scrollbar scroll-smooth ">
               {/* list of images */}
-              {imagesList.map((item, key) => {
+              {productData?.images.map((item, key) => {
                 return (
                   <div
                     key={key}
-                    className={`${
-                      imgInfo.activeImgURL === imagesList[key]
-                        ? " activeBuyImage"
-                        : " deactiveBuyImage"
-                    } rounded-[0.5rem] min-w-[5rem] h-20 
+                    // ${
+                    //   imgInfo.activeImgURL === imagesList[key]
+                    //     ? " activeBuyImage"
+                    //     : " deactiveBuyImage"
+                    // }
+                    className={`
+                   
+                     rounded-[0.5rem] min-w-[5rem] h-20 
                      ml-2
                       overflow-hidden   cursor-pointer`}
-                    onClick={() => onChnageImage(key)}
+                    // onClick={() => onChnageImage(key)}
                   >
-                    <img
-                      src={item}
+                    <img crossOrigin="anonymous"
+                      src={process.env.REACT_APP_URL_IMG+"/products/"+item}
                       alt=""
                       className="w-full h-full object-cover duration-1000"
                     />
@@ -71,7 +77,7 @@ export const ProductInfo = () => {
         <div className="md:col-span-2 shadow-md  flex flex-col justify-between ">
           <div className="space-y-3 pl-5">
             <h1 className="text-2xl font-semibold uppercase ">
-              {ProductsData[0].name}
+              {productData?.name}
             </h1>
             <h2 className="text-base capitalize text-gray-500">
               product code :<span className="text-green-700">M-944-142607</span>
@@ -80,7 +86,7 @@ export const ProductInfo = () => {
               <span className="line-through mr-2 text-xl text-gray-500 ">
                 {ProductsData[0].oldPrice}
               </span>{" "}
-              {ProductsData[0].Price}
+              {productData?.price} TK
             </p>
             <p className="text-xl font-semibold ">
               Qty:
@@ -105,7 +111,7 @@ export const ProductInfo = () => {
         </div>
       </div>
       {/*  footer */}
-      <ProductFooter />
+      <ProductFooter proDetails={productData} />
     </div>
   );
 };

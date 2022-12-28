@@ -7,7 +7,7 @@ import {
 import { FaPinterestSquare } from "react-icons/fa";
 import { MdLockClock } from "react-icons/md";
 
-const ProductFooter = () => {
+const ProductFooter = ({proDetails}) => {
   return (
     <div className="grid md:grid-cols-3 mt-5 gap-2 md:gap-0">
       <div className="md:col-span-1 flex items-center text-2xl  ">
