@@ -8,7 +8,7 @@ import {
   CategoryLists,
   Countries,
 } from "../Components/Shares/StaticData";
-import Pagination from "../Utils/Pagination";
+// import Pagination from "../Utils/Pagination";
 
 export default function Shops() {
   const [currentPosts, setCurrentPosts] = useState([]);
@@ -37,7 +37,7 @@ export default function Shops() {
         </div>
       </div>
       <div className="my-5 text-red-500 text-center">
-        <Pagination setCurrentPosts={setCurrentPosts} />
+        {/* <Pagination setCurrentPosts={setCurrentPosts} /> */}
       </div>
     </div>
   );

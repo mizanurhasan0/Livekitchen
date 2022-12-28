@@ -1,13 +1,16 @@
 import React from "react";
+import UserCtx from "../../Context/UserCtx";
 import HeaderTitle from "../Shares/HeaderTitle";
 
 import { CategoryLists } from "../Shares/StaticData";
 
 const Categoies = () => {
+  const { categories } = UserCtx();
+ console.log(categories)
   return (
     <div className="container my-10  font-Audiowide">
-    {/* Header title compoenets */}
-     <HeaderTitle title={"KITCHEN & DINING CATEGORY"}/>
+      {/* Header title compoenets */}
+      <HeaderTitle title={"KITCHEN & DINING CATEGORY"} />
       <div className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-5 ">
         {CategoryLists.map((item, i) => (
           <div
@@ -21,7 +24,10 @@ const Categoies = () => {
               {item.name}
             </h1>
 
-            <img src={item.icon} className="w-auto h-full group-hover:scale-110 duration-500" />
+            <img
+              src={item.icon}
+              className="w-auto h-full group-hover:scale-110 duration-500"
+            />
           </div>
         ))}
       </div>
