@@ -12,7 +12,7 @@ const Create = async (req) => {
         table: TABLE,
         reqBody: { ...req.body, images: images.images },
       });
-   
+
       if (newInstance.status === 400) {
         // DeleteImages(req);
       }
@@ -27,17 +27,13 @@ const Create = async (req) => {
 
 const remove = async (req) => {
   try {
-    if (!req.params.id) return { status: 401, reason: "Bad request" };
-
-    const newCat = await db.update({
+    if (!req.params.id) return { status: 400, reason: "Invalid request" };
+    const data = await db.remove({
       table: TABLE,
-      reqBody: {
-        findBy: { _id: req.params.id },
-        body: { isActive: false },
-      },
+      reqBody: { findBy: { _id: req.params.id } },
     });
-    if (!user) return { status: 404, reason: "User not found." };
-    return { status: 200, newCat };
+    if (!data) return { status: 404, reason: "User not found." };
+    return { status: 200, data };
   } catch (err) {
     console.log(err);
     throw new Error("Something went wrong");
@@ -78,13 +74,17 @@ const getOne = async (req) => {
     if (!newInstance) return { status: 404, reason: "No data found" };
     return { newInstance };
   } catch (err) {
-    throw new Error("Something went wrong"+err);
+    throw new Error("Something went wrong" + err);
   }
 };
 
 const getAll = async (req) => {
   try {
-    const data = await db.find({ table: TABLE, reqBody: { body: req.query },options: { populate: { path: 'category', select: 'name' } } });
+    const data = await db.find({
+      table: TABLE,
+      reqBody: { body: req.query },
+      options: { populate: { path: "category", select: "name" } },
+    });
     return { data };
   } catch (err) {
     console.log(err);

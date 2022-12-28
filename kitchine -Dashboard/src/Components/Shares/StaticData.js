@@ -14,11 +14,19 @@ import { GiCoffeeMug } from "react-icons/gi";
 import { TbToolsKitchen, TbBrandGoogleAnalytics } from "react-icons/tb";
 
 let OrdersNav = [
-  { path: "/orders", name: "All Orders", active: null },
-  { path: "/orders?status=pending", name: "Pending", active: "pending" },
-  { path: "/orders?status=delivered", name: "Delivered", active: "delivered" },
-  { path: "/orders?status=paid", name: "Paid", active: "paid" },
-  { path: "/orders?status=unpaid", name: "Unpaid", active: "unpaid" },
+  { path: "/dashboard/orders", name: "All Orders", active: null },
+  {
+    path: "/dashboard/orders?status=pending",
+    name: "Pending",
+    active: "pending",
+  },
+  {
+    path: "/dashboard/orders?status=delivered",
+    name: "Delivered",
+    active: "delivered",
+  },
+  { path: "/dashboard/orders?status=paid", name: "Paid", active: "paid" },
+  { path: "/dashboard/orders?status=unpaid", name: "Unpaid", active: "unpaid" },
 ];
 let SideMenuItem = [
   { path: "/dashboard", name: "Dashboard", icon: AiOutlineDashboard },
@@ -239,62 +247,62 @@ let TblProductHeader = [
   {
     name: "Name",
     key: "name",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Status",
     key: "isActive",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Category",
     key: "category",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Qty",
     key: "qty",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Price",
     key: "price",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Buy",
     key: "buy",
-    imgDir:"products"
-
+    imgDir: "products",
   },
   {
     name: "Listing Date",
     key: "createdDate",
-    imgDir:"products"
-
+    imgDir: "products",
   },
 ];
 let TblCategoryHeader = [
   {
     name: "Category Name",
     key: "name",
-    imgDir:"category"
+    imgDir: "category",
   },
   {
     name: "Visibility",
     key: "isActive",
-    imgDir:"category"
+    imgDir: "category",
   },
- 
 ];
-let ActiveOption= [
+let ActiveOption = [
   { name: "Public", _id: "true" },
   { name: "Private", _id: "false" },
 ];
 
-export { SideMenuItem, orderHistory, tableDb, OrdersNav, TblProductHeader,TblCategoryHeader,ActiveOption };
+export {
+  SideMenuItem,
+  orderHistory,
+  tableDb,
+  OrdersNav,
+  TblProductHeader,
+  TblCategoryHeader,
+  ActiveOption,
+};

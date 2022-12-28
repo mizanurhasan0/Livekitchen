@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from "../../Utils/Pagination";
 import getQueryValue from "../../Utils/QueryValue";
-import { OrdersNav, tableDb } from "../Shares/StaticData";
+import { OrdersNav } from "../Shares/StaticData";
 import Tables from "../Shares/Tables";
 import TitleBar from "../Shares/TitleBar";
 
 export default function OrderDash({ children }) {
   const [toggleState, setToggleState] = useState(1);
-  const [currentPosts,setCurrentPosts]=useState(false)
+  const [currentPosts, setCurrentPosts] = useState(false);
   const navigate = useNavigate();
   let { search } = useLocation();
 
@@ -20,7 +20,7 @@ export default function OrderDash({ children }) {
 
   return (
     <div className="py-10 px-5 bg-parag min-h-screen">
-     <TitleBar title="Orders" btnName="Add Order"/>
+      <TitleBar title="Orders" btnName="Add Order" />
 
       {/*  */}
       <div className=" bg-txt ">
@@ -41,10 +41,10 @@ export default function OrderDash({ children }) {
           ))}
         </div>
         <div className="overflow-scroll">
-            <Tables tblData={currentPosts}/>
-            <div className="block text-center py-5 space-x-1 ">
-          <Pagination setCurrentPosts={setCurrentPosts} />
-        </div>
+          <Tables tblData={currentPosts} />
+          <div className="block text-center py-5 space-x-1 ">
+            <Pagination setCurrentPosts={setCurrentPosts} />
+          </div>
         </div>
       </div>
     </div>

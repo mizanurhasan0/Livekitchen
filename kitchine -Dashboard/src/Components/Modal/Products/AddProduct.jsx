@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UseFormRequest from "../../../Hooks/UseFormRequest";
 import UseRequest from "../../../Hooks/UseRequest";
+import Loading from "../../Loading/Loading";
+import Loading2 from "../../Loading/Loading2";
 import Btn from "../../Shares/Btn";
 import Dropdown from "../../Shares/Dropdown";
 import Input from "../../Shares/Input";
@@ -12,28 +14,54 @@ import AlertToster from "../../Shares/Toastify/AlertToster";
 import UploadImgs from "../../Shares/UploadImgs";
 import "../styleModal.css";
 
-export default function AddProduct({ onClick = () => {} }) {
-  const { register, handleSubmit, reset } = useForm();
+export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
+  const { register, handleSubmit, reset, setValue } = useForm();
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState(false);
+
+  //
   const req = UseRequest();
   const reqF = UseFormRequest();
 
+  // Category load
   useEffect(() => {
-    req({ uri: "category", method: "GET" }).then((res) =>
-      setCategory(res.data)
-    );
+    setLoading(true);
+    req({ uri: "category", method: "GET" })
+      .then((res) => setCategory(res.data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Edit Data load
+  useEffect(() => {
+    if (itemId !== 0) {
+      setLoading(true);
+      req({ uri: `products/${itemId}`, method: "GET" })
+        .then((res) => {
+          setProduct(res.newInstance);
+          setValue("name", res.newInstance.name);
+          setValue("brand", res.newInstance.brand);
+          setValue("price", res.newInstance.price);
+          setValue("buy", res.newInstance.buy);
+          setValue("qty", res.newInstance.qty);
+          setValue("description", res.newInstance.description);
+          setValue("category", res.newInstance.category);
+        })
+        .finally(() => setLoading(false));
+    }
   }, []);
   // on Submit
   const onSubmit = (data) => {
+    setLoading(true);
     try {
       if (images.length !== 0) {
         let formData = new FormData();
-        for (let i = 0; i < images.length; i++) {
-          console.log(i)
-          formData.append("img", images[i]);
-        }
-       console.log(formData.get("img"))
+
+        Object.values(images).forEach((file) => {
+          formData.append("img", file);
+        });
+
         formData.append("name", data.name);
         formData.append("description", data.description);
         formData.append("brand", data.brand);
@@ -42,26 +70,32 @@ export default function AddProduct({ onClick = () => {} }) {
         formData.append("category", data.category);
         formData.append("qty", data.qty);
 
-        // reqF({
-        //   uri: "category",
-        //   method: "POST",
-        //   data: formData,
-        // }).then((res) => {
-        //   if (res.newInstance) {
-        //     AlertToster("Add Category!", "success");
-        //     reset();
-        //     setImages([]);
-        //     onClick();
-        //   } else {
-        //     AlertToster("Something went wrong", "error");
-        //   }
-        // });
+        reqF({
+          uri: "products",
+          method: "POST",
+          data: formData,
+        })
+          .then((res) => {
+            if (res.newInstance) {
+              AlertToster("Add Product!", "success");
+              reset();
+              setImages([]);
+              onClick();
+            } else {
+              AlertToster("Something went wrong", "error");
+            }
+          })
+          .finally(() => setLoading(false));
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+    }
   };
   //
   return (
     <div className="modal ">
+      {/* Loading Modal */}
+      {loading ? <Loading2 /> : ""}
       {/* image upload */}
 
       <div className="flex flex-col justify-center bg-txt p-10 rounded-md">
@@ -73,7 +107,12 @@ export default function AddProduct({ onClick = () => {} }) {
           <div className="flex flex-col mb-6">
             {/* images */}
             <div>
-              <UploadImgs imgs={images} setImgs={setImages} multiple={true} />
+              <UploadImgs
+                imgs={images}
+                setImgs={setImages}
+                multiple={true}
+                itemImg={product.images}
+              />
             </div>
             {/*  */}
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UseFormRequest from "../../../Hooks/UseFormRequest";
@@ -12,15 +13,23 @@ import UploadImgs from "../../Shares/UploadImgs";
 import "../styleModal.css";
 
 //
-export default function AddCategory({ onClick = () => {} }) {
-  const { register, handleSubmit, reset } = useForm();
+export default function AddCategory({ onClick = () => {}, itemId = 0 }) {
+  const { register, handleSubmit, reset, setValue } = useForm();
   const [images, setImages] = useState([]);
+  const [category, setCategory] = useState(false);
   // request hook
+  const req = UseRequest();
   const reqF = UseFormRequest();
 
+  useEffect(() => {
+    if (itemId != 0)
+      req({ uri: `category/${itemId}`, method: "GET" }).then((res) => {
+        setCategory(res.newInstance);
+        setValue("isActive", res.newInstance.isActive);
+      });
+  }, []);
   // on Submit
   const onSubmit = (data) => {
-    
     try {
       if (images.length !== 0) {
         let formData = new FormData();
@@ -42,8 +51,9 @@ export default function AddCategory({ onClick = () => {} }) {
           }
         });
       }
-    } catch (error) {console.log(error)}
-  
+    } catch (error) {
+      console.log(error);
+    }
   };
   //
   return (
@@ -59,12 +69,18 @@ export default function AddCategory({ onClick = () => {} }) {
           <div className="flex flex-col mb-6">
             {/* images */}
             <div>
-              <UploadImgs imgs={images} setImgs={setImages} multiple={false} />
+              <UploadImgs
+                imgs={images}
+                setImgs={setImages}
+                multiple={false}
+                itemImg={category.images}
+              />
             </div>
             {/*  */}
             <div className="w-full grid grid-cols-1  gap-5">
               <Input
                 label={"Category Name"}
+                value={category?.name}
                 register={{ ...register("name") }}
               />
 

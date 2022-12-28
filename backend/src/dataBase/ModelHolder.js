@@ -28,14 +28,14 @@ const Create = async ({ table, reqBody, options }) => {
     }
     return res;
   } catch (error) {
-    return {status:400,msg:"Something went wrong"}
+    return { status: 400, msg: "Something went wrong" };
   }
 };
 
 const find = async ({ table, reqBody, options }) => {
   try {
     let res;
-   
+
     if (options?.populate) {
       let populateOption = "";
       options.populate?.unset
@@ -54,7 +54,6 @@ const find = async ({ table, reqBody, options }) => {
 };
 
 const findOne = async ({ table, reqBody, options }) => {
-  
   try {
     let res;
     if (options?.populate) {
@@ -64,13 +63,12 @@ const findOne = async ({ table, reqBody, options }) => {
             .split(" ")
             .forEach((i) => (populateOption += " -" + i))
         : (populateOption = options?.populate?.select);
-       console.log(options?.populate?.path);
+      console.log(options?.populate?.path);
       res = await Table[table.toLowerCase()]
         .findOne(reqBody.body)
-        .populate({ path: options?.populate?.path, select: populateOption});
-        
+        .populate({ path: options?.populate?.path, select: populateOption });
     } else res = await Table[table.toLowerCase()].findOne(reqBody.body);
-   
+
     return res;
   } catch (err) {
     throw new Error(err);
@@ -107,8 +105,8 @@ const remove = async ({ table, reqBody }) => {
   try {
     const data = await Table[table.toLowerCase()].findOne(reqBody.findBy);
     if (!data) return data;
-   
-    // await data.remove();
+
+    await data.remove();
     return data;
   } catch (err) {
     throw new Error(err);

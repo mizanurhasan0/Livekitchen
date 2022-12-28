@@ -1,6 +1,6 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import Login from "../../Pages/Auth/Login";
+// import Login from "../../Pages/Auth/Login";
 import Sidebar from "../../Components/SideBar/Sidebar";
 import Analytics from "../../Pages/Analytics/Analytics";
 import Category from "../../Pages/Catalog/Category";
@@ -8,19 +8,26 @@ import ProductList from "../../Pages/Catalog/ProductList";
 import CustomerList from "../../Pages/Customers/CustomerList";
 import Home from "../../Pages/Home";
 import Orders from "../../Pages/Orders/Orders";
+import AuthCheck from "../../Hooks/AuthCheck";
+import Login from "../../Components/AuthComp/Login";
+import AuthLogin from "../../Pages/Auth/AuthLogin";
 
 export default function RoutingCon() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Login />,
+      element: <AuthLogin />,
     },
     {
       path: "/dashboard",
-      element: <Sidebar />,
+      element: (
+        <AuthCheck>
+          <Sidebar />
+        </AuthCheck>
+      ),
       children: [
         {
-          index:true,
+          index: true,
           element: <Home />,
         },
         {
@@ -35,7 +42,7 @@ export default function RoutingCon() {
           path: "products",
           element: <ProductList />,
         },
-        
+
         {
           path: "orders",
           element: <Orders />,
@@ -46,8 +53,6 @@ export default function RoutingCon() {
         },
       ],
     },
-    
-    
   ]);
   return routes;
 }

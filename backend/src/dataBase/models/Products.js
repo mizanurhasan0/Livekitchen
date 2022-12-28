@@ -51,14 +51,14 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-productSchema.methods.toJSON = function () {
-  const product = this;
-  const productObj = product.toObject();
-  productObj.id = productObj._id;
-  delete productObj._id;
-  delete productObj.__v;
+// productSchema.methods.toJSON = function () {
+//   const product = this;
+//   const productObj = product.toObject();
+//   productObj.id = productObj._id;
+//   delete productObj._id;
+//   delete productObj.__v;
 
-  return productObj;
-};
+//   return productObj;
+// };
 const Products = model("Products", productSchema);
 module.exports = Products;

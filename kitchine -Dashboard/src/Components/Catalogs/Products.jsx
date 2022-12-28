@@ -16,19 +16,21 @@ export default function Products() {
   const [currentProducts, setCurrentProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [reload, setReload] = useState(false);
   const req = UseRequest();
   // Function
   useEffect(() => {
     setLoading(true);
-    req({ uri: "products", method: "GET" }).then((res) => {
-      setProducts(res?.data.reverse());
-      setCurrentProducts(
-        res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
-      );
-      setLoading(false);
-    });
-  }, [openModal]);
-  // 
+    req({ uri: "products", method: "GET" })
+      .then((res) => {
+        setProducts(res?.data.reverse());
+        setCurrentProducts(
+          res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
+        );
+      })
+      .finally(() => setLoading(false));
+  }, [openModal, reload]);
+  //
   return (
     <div className="py-10 px-5 bg-parag min-h-screen">
       <TitleBar
@@ -42,13 +44,14 @@ export default function Products() {
           <div className="col-span-3">
             <SearchBar />
           </div>
-          <Dropdown options={ActiveOption}/>
+          <Dropdown options={ActiveOption} />
         </div>
         {!loading ? (
           <>
             <ShareTable
               tblData={currentProducts}
               tblHeader={TblProductHeader}
+              setReload={setReload}
             />
             <div className="block text-center py-5 space-x-1 ">
               <Pagination1

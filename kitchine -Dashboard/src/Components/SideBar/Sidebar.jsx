@@ -8,16 +8,35 @@ import { profile } from "../../Assets/Index";
 import TopBar from "./TopBar";
 import { useRef } from "react";
 import OutSideClick from "../../Utils/OutSideClick";
+import { CiLogout } from "react-icons/ci";
+import UseRequest from "../../Hooks/UseRequest";
+import AlertToster from "../Shares/Toastify/AlertToster";
+import UserCtx from "../../Context/UserCtx";
 
 const Sidebar = () => {
   const [subMenu, setSubmenu] = useState(false);
   const [minSidebar, setMinSidebar] = useState(false);
+  const { user, setUser } = UserCtx();
   const navigate = useNavigate();
   const navRef = useRef();
+  const req = UseRequest();
+
   // OutSideClick(navRef, setSubmenu);
   const onActiveSubmenu = (item) => {
     setSubmenu((val) => (val === item.name ? false : item.name));
     !item.subItems && navigate(item.path);
+  };
+  //
+  const onLogout = () => {
+    req({ uri: "logout" }).then((res) => {
+      if (res.status === 200) {
+        AlertToster("Logout", "success");
+        setUser(null);
+        navigate("/");
+      } else {
+        AlertToster("Something went wrong", "error");
+      }
+    });
   };
   return (
     <div className="flex flex-row h-screen w-full  ">
@@ -40,9 +59,9 @@ const Sidebar = () => {
           </span>
           {/* Side Link list */}
         </div>
-        <ul className="mt-5">
+        <ul className="mt-5 ">
           {SideMenuItem?.map((item, i) => (
-            <li key={i} className={`  cursor-pointer`}>
+            <li key={i} className={`cursor-pointer`}>
               <div
                 className={`${
                   subMenu === item.name && "bg-txt text-primary"
@@ -76,7 +95,9 @@ const Sidebar = () => {
                     <li
                       key={i}
                       className="hover:bg-txt hover:text-primary pl-6 py-2 rounded-l-sm pr-4 mb-2"
-                      onClick={() =>(!minSidebar?"":setSubmenu(!subMenu)) & navigate(`${subItem.path}`)
+                      onClick={() =>
+                        (!minSidebar ? "" : setSubmenu(!subMenu)) &
+                        navigate(`${subItem.path}`)
                       }
                     >
                       {subItem.name}
@@ -87,10 +108,21 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
+        <div
+          className={`absolute bottom-10 text-txt flex pl-5 cursor-pointer`}
+          onClick={() => onLogout()}
+        >
+          <CiLogout size={30} className=" mr-4" />
+          <span className={`${minSidebar ? "hidden" : "block"} text-2xl`}>
+            Logout
+          </span>
+        </div>
       </div>
       <div className="flex flex-col w-full">
         <TopBar setMinSidebar={() => setMinSidebar(!minSidebar)} />
-        <div className="overflow-y-scroll"><Outlet/></div>
+        <div className="overflow-y-scroll">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

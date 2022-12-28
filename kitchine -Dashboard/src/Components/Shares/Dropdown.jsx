@@ -13,7 +13,6 @@ export default function Dropdown({ register, options }) {
           </option>
         );
       })}
-      
     </select>
   );
 }

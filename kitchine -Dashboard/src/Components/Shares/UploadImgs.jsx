@@ -1,9 +1,12 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { uploadImg } from "../../Assets/Index";
 import CheckSize from "../../Utils/CheckSIze";
 import AlertToster from "./Toastify/AlertToster";
 
-export default function UploadImgs({ imgs, setImgs,multiple }) {
+export default function UploadImgs({ imgs, setImgs, multiple, itemImg = [] }) {
+  const path = useLocation().pathname.replace("/dashboard/", "");
+  // Uploaded File changed
   const handleFileChange = (event) => {
     const fileSize = event.target.files.length;
     if (fileSize > 0 && fileSize < 5) {
@@ -20,7 +23,6 @@ export default function UploadImgs({ imgs, setImgs,multiple }) {
       setImgs(arr);
     }
   };
-
   return (
     <>
       <label
@@ -29,8 +31,29 @@ export default function UploadImgs({ imgs, setImgs,multiple }) {
       >
         {imgs.length === 0 ? (
           <div className="flex flex-col items-center">
-            <img src={uploadImg} alt="upload" className="w-16 "/>
-            <span className="text-xl uppercase ">Upload images</span>
+            <div className="flex ">
+              {itemImg.map((img, i) => {
+                return (
+                  <img
+                    crossOrigin="anonymous"
+                    src={process.env.REACT_APP_URL_IMG + `/${path}/` + img}
+                    alt="upload"
+                    className="w-16 "
+                  />
+                );
+              })}
+            </div>
+            {itemImg.length === 0 && (
+              <>
+                <img
+                  crossOrigin="anonymous"
+                  src={uploadImg}
+                  alt="upload"
+                  className="w-16 "
+                />
+                <span className="text-xl uppercase ">Upload images</span>
+              </>
+            )}
           </div>
         ) : (
           imgs.map((img, i) => {
@@ -46,8 +69,8 @@ export default function UploadImgs({ imgs, setImgs,multiple }) {
           })
         )}
       </label>
-      <input multiple={multiple}
-        
+      <input
+        multiple={multiple}
         className="hidden "
         id="formFileLg"
         accept=".png, .jpg, .jpeg"
