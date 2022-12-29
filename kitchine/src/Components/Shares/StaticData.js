@@ -76,10 +76,10 @@ const CategoryLists = [
   { icon: mug, name: "Bottle ,mug ,FlASK" },
 ];
 const Countries = [
-  { name: "Bangladesh" },
-  { name: "China" },
-  { name: "Germany" },
-  { name: "Indonesia" },
+  { _id:1,name: "Bangladesh" },
+  { _id:2,name: "China" },
+  { _id:3,name: "Germany" },
+  { _id:4,name: "Indonesia" },
 ];
 const ProductsData = [
   {

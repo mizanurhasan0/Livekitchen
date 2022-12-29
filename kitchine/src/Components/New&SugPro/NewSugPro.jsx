@@ -7,7 +7,6 @@ import UserCtx from "../../Context/UserCtx";
 
 export default function NewSugPro({ title,topProducts }) {
 
-  console.log(topProducts)
   return (
     <div className="container font-Audiowide py-5 ">
       <HeaderTitle title={title} />

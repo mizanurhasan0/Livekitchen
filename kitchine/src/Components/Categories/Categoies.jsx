@@ -1,16 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import UserCtx from "../../Context/UserCtx";
 import HeaderTitle from "../Shares/HeaderTitle";
 
 const Categoies = () => {
   const { category } = UserCtx();
+  const navigate=useNavigate()
   return (
     <div className="container my-10  font-Audiowide">
       {/* Header title compoenets */}
       <HeaderTitle title={"KITCHEN & DINING CATEGORY"} />
       <div className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-5 ">
         {category.map((item, i) => (
-          <div
+          <div onClick={()=>navigate(`/shops?id=${item?._id+'&field=category001'}`)}
             key={i}
             className="relative group hover:shadow-lg border border-primary h-60 rounded-xl overflow-hidden shadow-xl cursor-pointer flex flex-col items-center"
           >

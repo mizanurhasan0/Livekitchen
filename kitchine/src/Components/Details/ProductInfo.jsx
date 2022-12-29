@@ -10,26 +10,11 @@ import { ProductsData } from "../Shares/StaticData";
 import "./productDetails.css";
 import ProductFooter from "./ProductFooter";
 
-export const ProductInfo = ({productData}) => {
-  const [imgInfo, setImgInfo] = useState({
-    activeImgURL: [],
-    upAnkerTag: false,
-    downAnkerTag: true,
-  });
- 
-  //  const imagesList = [];
-  // // for changing image on click
-  // const onChnageImage = (id) => {
-  //   Object.keys(imagesList).forEach((key) => {
-  //     imagesList[key] === imagesList[id] &&
-  //       setImgInfo({
-  //         ...imgInfo,
-  //         activeImgURL: imagesList[id],
-  //       });
-  //   });
-  // };
+export const ProductInfo = ({ productData }) => {
+  const [imgInfo, setImgInfo] = useState(productData?.images[0] || null);
+
   // Load Single product Info
- 
+
   return (
     <div className=" mb-10 font-Audiowide ">
       <div className="md:grid grid-cols-5 gap-5 text-center md:text-start space-y-5">
@@ -37,10 +22,11 @@ export const ProductInfo = ({productData}) => {
         <div className="col-span-3 grid grid-rows-6 h-[30rem] ">
           <div className=" row-span-5 shadow-black p-3">
             {/* Image */}
-            <img crossOrigin="anonymous"
-              src={process.env.REACT_APP_URL_IMG+"/products/"+productData?.images[0]}
+            <img
+              crossOrigin="anonymous"
+              src={process.env.REACT_APP_URL_IMG + "/products/" + imgInfo}
               alt=""
-              className="h-full w-full object-cover rounded-md shadow-xl"
+              className="h-full w-full object-contain rounded-md shadow-xl"
             />
           </div>
           <div className="row-span-1 flex overflow-hidden">
@@ -50,20 +36,20 @@ export const ProductInfo = ({productData}) => {
                 return (
                   <div
                     key={key}
-                    // ${
-                    //   imgInfo.activeImgURL === imagesList[key]
-                    //     ? " activeBuyImage"
-                    //     : " deactiveBuyImage"
-                    // }
                     className={`
-                   
+                    ${
+                      imgInfo === productData?.images[key]
+                        ? " activeBuyImage transition-all duration-200"
+                        : " deactiveBuyImage"
+                    }
                      rounded-[0.5rem] min-w-[5rem] h-20 
                      ml-2
                       overflow-hidden   cursor-pointer`}
-                    // onClick={() => onChnageImage(key)}
+                    onClick={() => setImgInfo(productData?.images[key])}
                   >
-                    <img crossOrigin="anonymous"
-                      src={process.env.REACT_APP_URL_IMG+"/products/"+item}
+                    <img
+                      crossOrigin="anonymous"
+                      src={process.env.REACT_APP_URL_IMG + "/products/" + item}
                       alt=""
                       className="w-full h-full object-cover duration-1000"
                     />
