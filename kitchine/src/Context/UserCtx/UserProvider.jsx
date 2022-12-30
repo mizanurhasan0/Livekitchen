@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
 import UseRequest from "../../Hooks/UseRequest";
+import useCookie from 'react-use-cookie';
 
 export const User = createContext();
 
@@ -11,6 +12,7 @@ export default function UserProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
+  const [userToken, setUserToken] = useCookie('token', '0');
 
   const request = UseRequest();
   const fetchUser = () => {
@@ -26,7 +28,7 @@ export default function UserProvider({ children }) {
   };
 
   //
-
+console.log(userToken)
   // Get All Category
   async function getCategory() {
     await request({ uri: "category", method: "GET" })

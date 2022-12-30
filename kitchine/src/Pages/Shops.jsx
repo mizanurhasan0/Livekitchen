@@ -60,17 +60,14 @@ export default function Shops() {
         {/* Start Side category */}
         <div className="text-gray-700 space-y-4">
           {/* 1st */}
-          <ShopCategory CategoryLists={category} field="category001" />
+          <ShopCategory CategoryLists={category} field="category001" title={"Filter by Category"}/>
           {/* Country filter */}
-          <ShopCategory CategoryLists={Countries} field="country001" />
+          <ShopCategory CategoryLists={Countries} field="country001" title={"Filter by Country"}/>
           {/* End country */}
         </div>
         {/* End side bar */}
         <div className="space-y-2 w-full">
-          {/* <div  className="relative w-full h-60 bg-cover flex items-center justify-center overflow-hidden">
-            <h1 className="text-8xl text-primary font-Audiowide z-10">Shops</h1>
-            <img src={slider2} alt="banner" className="absolute object-cover w-full opacity-50"/>
-          </div> */}
+         
           {!loading ? (
             <>
               <SearchDemo />

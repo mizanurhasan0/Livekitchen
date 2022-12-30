@@ -23,6 +23,11 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    discount: {
+      type: Number,
+      required: true,
+      default:0
+    },
     buy: {
       type: Number,
       required: true,

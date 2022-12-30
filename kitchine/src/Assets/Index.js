@@ -27,8 +27,10 @@ const slider1=require("./SliderImages/slider1.jpg");
 const slider2=require("./SliderImages/slider2.jpg");
 const slider3=require("./SliderImages/slider3.jpg");
 const slider4=require("./SliderImages/slider4.jpg");
+// 
+const logo=require("./logo.png")
 
 export {
  oil1,oil2,oil3,gloves1,gloves2,gloves3,rack1,rack2,rack3,knif1,banner4,banner1,blender,
- cookingtools,mug,oven,avater,banner5,slider1,slider2,slider3,slider4
+ cookingtools,mug,oven,avater,banner5,slider1,slider2,slider3,slider4,logo
 };

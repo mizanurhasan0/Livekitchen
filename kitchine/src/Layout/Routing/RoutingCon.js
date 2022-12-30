@@ -2,6 +2,7 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import About from "../../Components/About/About";
 import Contact from "../../Components/Contact/Contact";
+import AuthLogin from "../../Pages/Auth/AuthLogin";
 import BlogsWrapper from "../../Pages/BlogsWrapper";
 import Carts from "../../Pages/Carts";
 import Home from "../../Pages/Home";
@@ -37,6 +38,10 @@ export default function RoutingCon() {
     {
       path: "/carts",
       element: <Carts />,
+    },
+    {
+      path: "/login",
+      element: <AuthLogin />,
     },
   ]);
   return routes;

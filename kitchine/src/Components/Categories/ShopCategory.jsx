@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function ShopCategory({ CategoryLists,field }) {
+export default function ShopCategory({ CategoryLists,field,title }) {
   const navigate=useNavigate()
   return (
     <div className="bg-white p-2">
-      <h1 className="text-lg text-primary font-bold capitalize whitespace-nowrap">Filter by Category</h1>
+      <h1 className="text-lg text-primary font-bold capitalize whitespace-nowrap">{title}</h1>
       <ul className="space-y-2 py-5">
         {CategoryLists.map((category, i) => (
          

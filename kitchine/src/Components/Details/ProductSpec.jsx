@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ProductSpec = ({productData}) => {
+const ProductSpec = ({ productData }) => {
   const [toggleState, setToggleState] = useState(1);
   // console.log(ProductsData[0]);
   return (
@@ -47,7 +47,7 @@ const ProductSpec = ({productData}) => {
                 : "hidden"
             }
           >
-            <h2 className="text-2xl uppercase">Content 1</h2>
+            <h2 className="text-2xl uppercase">Product Details</h2>
             <hr className=" border-yellow-500" />
             <p className="text-xl text-justify pt-2">
               {productData?.description}
@@ -61,14 +61,13 @@ const ProductSpec = ({productData}) => {
                 : "hidden"
             }
           >
-            <h2 className="text-2xl uppercase">Content 2</h2>
+            <h2 className="text-2xl uppercase">Delivery info</h2>
             <hr />
             <p className="text-xl text-justify pt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-              praesentium incidunt quia aspernatur quasi quidem facilis quo
-              nihil vel voluptatum? Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Obcaecati praesentium incidunt quia aspernatur
-              quasi quidem facilis quo nihil vel voluptatum?
+              Estimated delivery time: processing time + Shipping time
+              Processing time: Usually around 3-5 working days Shipping time:
+              Standard shipping usually takes 10-15 days Expedited shipping
+              usually takes 6-10 days
             </p>
           </div>
 
@@ -79,14 +78,19 @@ const ProductSpec = ({productData}) => {
                 : "hidden"
             }
           >
-            <h2 className="text-2xl uppercase">Content 3</h2>
+            <h2 className="text-2xl uppercase">Return your products</h2>
             <hr />
             <p className="text-xl text-justify pt-2">
-              Digital Kitchen Weight Scale. Product Type: Digital Kitchen Weight
-              Scale. Max Weight Capacity: 10KG. Weighing Units: Gm / oz.
-              Automatic switch off. Low battery and over load indication.
-              Automatic zero resetting. Display LCD. Power Supply: 2AA x 1.5V
-              battery Included.
+              Returns & exchanges 30 days money back guarantee Requirement: 1.
+              Returned items must be in their unused condition with the original
+              packaging. 2. We do not accept returned items that were sent back
+              without a proper return request. 3. We do not offer an FTC
+              (Freight To Collect) service for the packages returned to us. The
+              return is at your own expense. 4. Please double-check your returns
+              before sending them. We are not responsible for returns of
+              non-Kalesafe products. 5. All returns will be refunded with a
+              credit note in the form of a business checkout code. For more
+              information, please contact us: grameenshopbd4u@gmail.com
             </p>
           </div>
         </div>
