@@ -25,7 +25,7 @@ export default function Contact() {
         </div>
         <div>
           {faqContact.map((faq, i) => (
-            <div className="my-2">
+            <div className="my-2" key={i}>
               <input
                 type="radio"
                 name="example_accordion"

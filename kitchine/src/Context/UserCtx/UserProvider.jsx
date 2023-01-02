@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
 import UseRequest from "../../Hooks/UseRequest";
-import useCookie from 'react-use-cookie';
+import { useCookies } from "react-cookie";
 
 export const User = createContext();
 
@@ -12,7 +12,8 @@ export default function UserProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
-  const [userToken, setUserToken] = useCookie('token', '0');
+  const [carts, setCarts] = useState(false);
+  const [cookies] = useCookies();
 
   const request = UseRequest();
   const fetchUser = () => {
@@ -26,13 +27,14 @@ export default function UserProvider({ children }) {
       console.log("SOmething wrong");
     }
   };
-
+  // console.log(cookies);
   //
-console.log(userToken)
   // Get All Category
   async function getCategory() {
     await request({ uri: "category", method: "GET" })
-      .then((res) => setCategory(res.data))
+      .then((res) => {
+        setCategory(res?.data);
+      })
       .catch((err) => console.log(err));
   }
   async function getProducts() {
@@ -40,15 +42,32 @@ console.log(userToken)
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }
+  const getCarts = async () => {
+    await request({ uri: "cart", method: "GET" })
+      .then((res) => setCarts(res.newInstance))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
-    getCategory()
-    getProducts()
+    getCategory();
+    getProducts();
+    if (cookies.auth) {
+      getCarts();
+    }
   }, []);
 
-  // useEffect(() => {
-  //   fetchUser();
-  // }, [userUpdate]);
+  useEffect(() => {
+    if (cookies.auth) {
+      try {
+        fetchUser();
+        getCarts();
+      } catch (error) {
+        console.log(error)
+      }
+    
+    }
+  }, [userUpdate]);
+  // 
   return (
     <User.Provider
       value={{
@@ -57,7 +76,10 @@ console.log(userToken)
         isLoading,
         setIsLoading,
         setUserUpdate,
-        category,products,
+        category,
+        products,
+        carts,
+        setCarts,
       }}
     >
       {children}

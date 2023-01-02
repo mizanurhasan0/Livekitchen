@@ -1,6 +1,6 @@
 
 const ResponseHandler = (modelEntity) => {
-
+ 
   return (req, res) => {
 
     const httpRequest = {
@@ -19,20 +19,14 @@ const ResponseHandler = (modelEntity) => {
         "User-Agent": req.get("User-Agent"),
       },
     };
-    
+  
     modelEntity(httpRequest)
       .then((respon) => {
-        if (respon?.cookie === "set") {
-        
-          res.cookie(process.env.COOKIE_NAME, respon?.token, {
-            httpOnly: true,
-          });
-
+        if (respon?.cookie === "set") {        
+          res.cookie(process.env.COOKIE_NAME, respon?.token);
           // delete respon.cookie;
         } else if (respon?.cookie === "unset") {
-          res.clearCookie(process.env.COOKIE_NAME, {
-            httpOnly: true,
-          });
+          res.clearCookie(process.env.COOKIE_NAME);
           delete respon.cookie;
         }
         if (respon?.redirect?.status) return res.redirect(respon.redirect.link);

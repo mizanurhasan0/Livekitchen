@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserCtx from "../../Context/UserCtx";
 import UseRequest from "../../Hooks/UseRequest";
 import Btn from "../Shares/Btn";
@@ -29,11 +29,9 @@ export default function Register() {
 
   return (
     <>
-      <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">
-        New User Form
-      </h4>
+      <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">New User Form</h4>
 
-      <form onSubmit={handleSubmit(onRegister)} >
+      <form onSubmit={handleSubmit(onRegister)}>
         <p className="mb-4">Please Register to your account</p>
         <div className="mb-4">
           <Input label={"Your Name"} register={{ ...register("name") }} />
@@ -69,7 +67,7 @@ export default function Register() {
           />
         </div>
         <div className=" pt-1 mb-12 pb-1 flex justify-between items-center">
-          <Btn cStyle={"px-14"} child={"Register"} type="submit" />
+          <Btn className={"px-14"} child={"Register"} type="submit" />
         </div>
       </form>
     </>

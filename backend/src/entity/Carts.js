@@ -102,7 +102,7 @@ const getOne = async (req) => {
 const getAll = async (req) => {
   try {
     const data = await db.find({ table: TABLE, reqBody: { body: req.query } });
-    return { data };
+    return { data }
   } catch (err) {
     console.log(err);
     throw new Error("Something went wrong");

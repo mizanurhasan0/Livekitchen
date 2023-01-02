@@ -1,0 +1,7 @@
+
+.profile{
+    display: none;
+}
+input[type=checkbox]:checked ~ .profile {
+    display: block
+}
