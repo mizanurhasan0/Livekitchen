@@ -32,7 +32,7 @@ const Create = async ({ table, reqBody, options }) => {
   }
 };
 
-const find = async ({ table, reqBody, options }) => {
+const find = async ({ table, reqBody, options,select }) => {
   try {
     let res;
 
@@ -44,9 +44,9 @@ const find = async ({ table, reqBody, options }) => {
             .forEach((i) => (populateOption += " -" + i))
         : (populateOption = options.populate?.select);
       res = await Table[table.toLowerCase()]
-        .find(reqBody.body)
+        .find(reqBody.body).select(select)
         .populate({ path: options.populate?.path, select: populateOption });
-    } else res = await Table[table.toLowerCase()].find(reqBody.body);
+    } else res = await Table[table.toLowerCase()].find(reqBody.body).select(select);
     return res;
   } catch (err) {
     throw new Error(err);

@@ -18,7 +18,6 @@ export default function Login() {
   const req = UseRequest();
   const navigate = useNavigate();
   const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
   const [reg, setReg] = useState(false);
   // Function
   useEffect(() => {
@@ -26,12 +25,17 @@ export default function Login() {
   }, [user, navigate]);
 
   const login = (data) => {
-    req({ uri: "login", method: "POST", data: data }).then((res) => {
-      if (res.status === 200) {
-        setUserUpdate((v) => (v === false ? true : false));
-        setUser(res.loginProfile);
-        AlertToster("Success", "success");
-        navigate("/dashboard");
+    req({ uri: "adminlogin", method: "POST", data: data }).then((res) => {
+      if (res?.status === 200) {
+        if(res?.loginProfile?.isAdmin[0]?.toLowerCase()==="admin"){
+          AlertToster("Success", "success");
+          setUserUpdate((v) => (v === false ? true : false));
+          setUser(res?.loginProfile);
+          navigate("/dashboard");
+        }else{
+          AlertToster("Access denied!", "warning");
+        }
+       
       } else {
         AlertToster("Something went wrong", "error");
       }
@@ -80,15 +84,15 @@ export default function Login() {
                         <label
                          onClick={()=>setReg(!reg)}
                           className="text-primary font-bold uppercase"
-                        >
-                          Register
+                        >{!reg?"Register":"Back to Login"}
+                          
                         </label>
                       </div>
                     </form>
                   </div>
                 </div>
                 <div className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-primary">
-                  {!reg ? (
+                  {reg ? (
                       <div className="text-white w-full px-4 py-6 md:p-12 md:mx-6">
                     <Register />
                     </div>

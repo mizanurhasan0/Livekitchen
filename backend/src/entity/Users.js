@@ -39,7 +39,34 @@ const logIn = async (req) => {
     throw new Error("Something went wrong");
   }
 };
+const AdminlogIn = async (req) => {
+  const { email, password } = req.body;
 
+  try {
+    if (!email || !password) return { status: 400, reason: "bad requests" };
+
+    const loginProfile = await db.findOne({
+      table: TABLE,
+      reqBody: { body: { email: req.body.email } },
+    });
+    
+    if (!loginProfile)
+      return { status: 401, reason: "Incorrect username or password" };
+      
+    if(loginProfile.isAdmin[0]!=="admin") return { status: 401, reason: "Incorrect username or password" };
+
+    const isValid = await loginProfile.checkPassword(req.body.password);
+    if (!isValid)
+      return { status: 401, reason: "Incorrect username or password" };
+    else {
+      const token = await loginProfile.generateToken();
+      return { status: 200, loginProfile, token, cookie: "set" };
+    }
+  } catch (err) {
+    console.log(err);
+    throw new Error("Something went wrong");
+  }
+};
 const remove = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
@@ -132,4 +159,5 @@ module.exports = {
   logIn,
   logOut,
   loadUser,
+  AdminlogIn
 };

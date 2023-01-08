@@ -29,6 +29,7 @@ const Sidebar = () => {
   //
   const onLogout = () => {
     req({ uri: "logout" }).then((res) => {
+      console.log(res)
       if (res.status === 200) {
         AlertToster("Logout", "success");
         setUser(null);

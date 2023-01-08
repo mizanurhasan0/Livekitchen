@@ -8,19 +8,25 @@ const {
   getOne,
   loadUser,
   logOut,
+  AdminlogIn,
 } = require("../entity/Users");
+const AdminCheck = require("../middleware/AdminCheck");
 const auth = require("../middleware/Auth");
 
 const router = require("express").Router();
 
 router.post("/user", ResponseHandler(Create));
-router.get("/user", ResponseHandler(getAll));
-router.get("/user/:id", ResponseHandler(getOne));
 router.get("/userprofile",auth, ResponseHandler(loadUser));
 
 router.get("/logout", auth, ResponseHandler(logOut));
 router.post("/login", ResponseHandler(logIn));
+// Amdin Login
+router.get("/user",AdminCheck, ResponseHandler(getAll));
+router.get("/user/:id",AdminCheck, ResponseHandler(getOne));
+router.get("/adminprofile",AdminCheck, ResponseHandler(loadUser));
+router.post("/adminlogin", ResponseHandler(AdminlogIn));
+
 router.patch("/user/remove/:id", auth, ResponseHandler(remove));
-router.patch("/user/update/:id", ResponseHandler(update));
+router.patch("/user/update/:id",auth, ResponseHandler(update));
 
 module.exports = router;

@@ -8,9 +8,18 @@ const Create = async (req) => {
     const images = CheckImageSize(req);
 
     if (images.check) {
+      // const category = await db.findOne({
+      //   table: "category",
+      //   reqBody: { body: { _id: req.body.category } },
+      // });
+      
       const newInstance = await db.Create({
         table: TABLE,
-        reqBody: { ...req.body, images: images.images },
+        reqBody: {
+          ...req.body,
+          images: images.images,
+          categoryName: category.name,
+        },
       });
 
       if (newInstance.status === 400) {
@@ -84,6 +93,21 @@ const getAll = async (req) => {
       table: TABLE,
       reqBody: { body: req.query },
       options: { populate: { path: "category", select: "name" } },
+      select:"-buy"
+    });
+    return { data };
+  } catch (err) {
+    console.log(err);
+    throw new Error("Something went wrong");
+  }
+};
+const adminGetAll = async (req) => {
+  try {
+    const data = await db.find({
+      table: TABLE,
+      reqBody: { body: req.query },
+      options: { populate: { path: "category", select: "name" } },
+     
     });
     return { data };
   } catch (err) {
@@ -110,5 +134,6 @@ module.exports = {
   remove,
   getOne,
   update,
-  getProductByCategory
+  getProductByCategory,
+  adminGetAll
 };

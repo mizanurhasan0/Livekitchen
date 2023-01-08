@@ -24,7 +24,7 @@ const ResponseHandler = (modelEntity) => {
       .then((respon) => {
         if (respon?.cookie === "set") {        
           res.cookie(process.env.COOKIE_NAME, respon?.token);
-          // delete respon.cookie;
+           delete respon.cookie;
         } else if (respon?.cookie === "unset") {
           res.clearCookie(process.env.COOKIE_NAME);
           delete respon.cookie;

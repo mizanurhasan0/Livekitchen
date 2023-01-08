@@ -21,8 +21,9 @@ export default function Products() {
   // Function
   useEffect(() => {
     setLoading(true);
-    req({ uri: "products", method: "GET" })
+    req({ uri: "admin/products", method: "GET" })
       .then((res) => {
+        console.log(res)
         setProducts(res?.data.reverse());
         setCurrentProducts(
           res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)

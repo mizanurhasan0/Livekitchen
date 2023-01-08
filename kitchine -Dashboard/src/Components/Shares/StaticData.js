@@ -292,6 +292,24 @@ let TblCategoryHeader = [
     imgDir: "category",
   },
 ];
+let TblUsersHeader = [
+  {
+    name: "User Name",
+    key: "name",
+  },
+  {
+    name: "Mobile",
+    key: "phone",
+  },
+  {
+    name: "email",
+    key: "email",
+  },
+  {
+    name: "Status",
+    key: "isActive",
+  },
+];
 let ActiveOption = [
   { name: "Public", _id: "true" },
   { name: "Private", _id: "false" },
@@ -305,4 +323,5 @@ export {
   TblProductHeader,
   TblCategoryHeader,
   ActiveOption,
+  TblUsersHeader
 };

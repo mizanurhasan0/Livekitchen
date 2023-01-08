@@ -18,7 +18,7 @@ const SearchBar = () => {
         />
         <Btn
           onClick={() => setValue(value)}
-          child={<IoIosSearch className="w-8 h-8  text-primary  group-hover:text-txt" />}
+          child={<IoIosSearch className="w-8 h-8  text-txt  group-hover:text-txt" />}
           cStyle="border-l border-primary rounded-r-md box-border px-5 flex items-center justify-center hover:text-txt hover:bg-primary group transition-all duration-300"
           
         />

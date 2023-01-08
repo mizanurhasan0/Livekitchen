@@ -8,10 +8,12 @@ const {
   update,
   getOne,
   getProductByCategory,
+  adminGetAll,
 } = require("../entity/Products");
 const auth = require("../middleware/Auth");
 const upload = require("../utils/UploadImg");
 const CheckImageSize = require("../utils/CheckImgSize");
+const AdminCheck = require("../middleware/AdminCheck");
 
 const router = require("express").Router();
 const imgPath = 'images/1670859279175-1671172076075.jpg'
@@ -36,11 +38,15 @@ router.get("/img", (req,res)=>{
 // });
   res.send("Uploaded....")
 })
-router.post("/products",upload.array("img",5), ResponseHandler(Create));
+router.post("/products",AdminCheck,upload.array("img",5), ResponseHandler(Create));
+router.patch("/products/remove/:id", AdminCheck, ResponseHandler(remove));
+router.patch("/products/update/:id",AdminCheck,upload.array("img",5), ResponseHandler(update));
+router.get("/admin/products",AdminCheck, ResponseHandler(adminGetAll));
+
+
+// user
 router.get("/products", ResponseHandler(getAll));
 router.get("/products/:id", ResponseHandler(getOne));
 router.get("/products/category/:id", ResponseHandler(getProductByCategory));
-router.patch("/products/remove/:id", auth, ResponseHandler(remove));
-router.patch("/products/update/:id",upload.array("img",5), ResponseHandler(update));
 
 module.exports = router;

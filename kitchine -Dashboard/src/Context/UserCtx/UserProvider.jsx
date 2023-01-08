@@ -14,20 +14,19 @@ export default function UserProvider({ children }) {
   const fetchUser = () => {
     setIsLoading(true);
     try {
-      request({ uri: "userprofile", method: "GET" })
+      request({ uri: "adminprofile", method: "GET" })
       .then(({ userProfile }) => setUser(userProfile))
       .catch(() => setUser(null))
       .finally(() => setIsLoading(false));
     } catch (error) {
-      console.log("SOmething wrong")
+      console.log("Something wrong")
     }
-  
-    
   };
 
   //
   useEffect(() => {
     fetchUser();
+    console.log(user)
   }, []);
 
   useEffect(() => {
