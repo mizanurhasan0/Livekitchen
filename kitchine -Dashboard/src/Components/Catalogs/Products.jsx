@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Loading from "../Loading/Loading";
 import AddProduct from "../Modal/Products/AddProduct";
 import Dropdown from "../Shares/Dropdown";
+import Loading2 from "../Loading/Loading2";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -23,7 +24,7 @@ export default function Products() {
     setLoading(true);
     req({ uri: "admin/products", method: "GET" })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setProducts(res?.data.reverse());
         setCurrentProducts(
           res?.data.slice(0, process.env.REACT_APP_PRODUCT_PER_PAGE)
@@ -47,23 +48,20 @@ export default function Products() {
           </div>
           <Dropdown options={ActiveOption} />
         </div>
-        {!loading ? (
-          <>
-            <ShareTable
-              tblData={currentProducts}
-              tblHeader={TblProductHeader}
-              setReload={setReload}
-            />
-            <div className="block text-center py-5 space-x-1 ">
-              <Pagination1
-                products={products}
-                setCurrentProducts={setCurrentProducts}
-              />
-            </div>
-          </>
-        ) : (
-          <Loading />
-        )}
+          {/* Tables */}
+          {loading&&<Loading2/>}
+        <ShareTable
+          tblData={currentProducts}
+          tblHeader={TblProductHeader}
+          setReload={setReload}
+        />
+        {/* pagination */}
+        <div className="block text-center py-5 space-x-1 ">
+          <Pagination1
+            products={products}
+            setCurrentProducts={setCurrentProducts}
+          />
+        </div>
       </div>
       {openModal && (
         <div className="absolute">

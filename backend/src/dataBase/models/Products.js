@@ -17,7 +17,6 @@ const productSchema = new Schema(
 
     brand: {
       type: String,
-      required: true,
     },
     price: {
       type: Number,
@@ -26,13 +25,12 @@ const productSchema = new Schema(
     discount: {
       type: Number,
       required: true,
-      default:0
     },
     buy: {
       type: Number,
       required: true,
     },
-    categoryName:{
+    origin:{
       type:String,
       require:true
     },

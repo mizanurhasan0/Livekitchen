@@ -5,6 +5,7 @@ import Btn from "../Shares/Btn";
 
 export default function Product({ cardInfo={} }) {
   const navigate = useNavigate();
+  console.log(cardInfo)
   return (
     <div className=" bg-white text-gray-700 relative shadow-lg hover:shadow-xl overflow-hidden text-center rounded-md">
       {/* New arrival icons */}
@@ -28,7 +29,7 @@ export default function Product({ cardInfo={} }) {
       </p>
 
       <Btn
-        cStyle={`hover:bg-primary hover:text-txt
+        className={`hover:bg-primary hover:text-txt
         border border-primary rounded-b-md  w-full text-primary  text-lg font-bold capitalize p-2`}
         child={
           <span className="flex items-center  justify-center ">

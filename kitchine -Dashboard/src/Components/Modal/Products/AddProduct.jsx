@@ -9,10 +9,12 @@ import Loading2 from "../../Loading/Loading2";
 import Btn from "../../Shares/Btn";
 import Dropdown from "../../Shares/Dropdown";
 import Input from "../../Shares/Input";
+import { Origin } from "../../Shares/StaticData";
 import TextArea from "../../Shares/TextArea";
 import AlertToster from "../../Shares/Toastify/AlertToster";
 import UploadImgs from "../../Shares/UploadImgs";
 import "../styleModal.css";
+
 
 export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
   const { register, handleSubmit, reset, setValue } = useForm();
@@ -43,7 +45,9 @@ export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
           setValue("name", res.newInstance.name);
           setValue("brand", res.newInstance.brand);
           setValue("price", res.newInstance.price);
+          setValue("discount", res.newInstance.discount);
           setValue("buy", res.newInstance.buy);
+          setValue("origin", res.newInstance.origin);
           setValue("qty", res.newInstance.qty);
           setValue("description", res.newInstance.description);
           setValue("category", res.newInstance.category);
@@ -66,6 +70,8 @@ export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
         formData.append("description", data.description);
         formData.append("brand", data.brand);
         formData.append("price", data.price);
+        formData.append("discount", data.discount);
+        formData.append("origin", data.origin);
         formData.append("buy", data.buy);
         formData.append("category", data.category);
         formData.append("qty", data.qty);
@@ -125,9 +131,14 @@ export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
                 register={{ ...register("brand", { required: true }) }}
               />
               <Input
-                label={"Price"}
+                label={"Current price"}
                 type="number"
                 register={{ ...register("price", { required: true }) }}
+              />
+               <Input
+                label={"Old price"}
+                type="number"
+                register={{ ...register("discount", { required: true }) }}
               />
               <Input
                 label={"Buy Price"}
@@ -140,6 +151,10 @@ export default function AddProduct({ onClick = () => {}, itemId = 0 }) {
                 register={{ ...register("qty", { required: true }) }}
               />
               <Dropdown
+                options={Origin}
+                register={{ ...register("origin", { required: true }) }}
+              />
+               <Dropdown
                 options={category}
                 register={{ ...register("category", { required: true }) }}
               />

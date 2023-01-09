@@ -1,6 +1,7 @@
 const db = require("../dataBase/index");
 const CheckImageSize = require("../utils/CheckImgSize");
 const DeleteImages = require("../utils/DeleteImages");
+const RmListImgs = require("../utils/RmListImgs");
 const TABLE = "products";
 
 const Create = async (req) => {
@@ -12,18 +13,17 @@ const Create = async (req) => {
       //   table: "category",
       //   reqBody: { body: { _id: req.body.category } },
       // });
-      
+
       const newInstance = await db.Create({
         table: TABLE,
         reqBody: {
           ...req.body,
-          images: images.images,
-          categoryName: category.name,
+          images: images.images
         },
       });
 
       if (newInstance.status === 400) {
-        // DeleteImages(req);
+         DeleteImages(req);
       }
       return { newInstance };
     } else {
@@ -42,6 +42,9 @@ const remove = async (req) => {
       reqBody: { findBy: { _id: req.params.id } },
     });
     if (!data) return { status: 404, reason: "User not found." };
+    // Remove list of Images function
+   
+    await RmListImgs(data.images, "products");
     return { status: 200, data };
   } catch (err) {
     console.log(err);
@@ -93,7 +96,7 @@ const getAll = async (req) => {
       table: TABLE,
       reqBody: { body: req.query },
       options: { populate: { path: "category", select: "name" } },
-      select:"-buy"
+      select: "-buy",
     });
     return { data };
   } catch (err) {
@@ -107,7 +110,6 @@ const adminGetAll = async (req) => {
       table: TABLE,
       reqBody: { body: req.query },
       options: { populate: { path: "category", select: "name" } },
-     
     });
     return { data };
   } catch (err) {
@@ -135,5 +137,5 @@ module.exports = {
   getOne,
   update,
   getProductByCategory,
-  adminGetAll
+  adminGetAll,
 };

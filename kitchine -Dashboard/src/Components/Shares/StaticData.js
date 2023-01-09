@@ -1,17 +1,11 @@
 import {
-  AiOutlineMail,
-  AiOutlinePhone,
   AiOutlineDashboard,
   AiOutlineDatabase,
   AiOutlineUser,
   AiOutlineShoppingCart,
   AiOutlineSetting,
 } from "react-icons/ai";
-import { GoLocation } from "react-icons/go";
-import { GiChickenOven } from "react-icons/gi";
-import { MdOutlineBlender } from "react-icons/md";
-import { GiCoffeeMug } from "react-icons/gi";
-import { TbToolsKitchen, TbBrandGoogleAnalytics } from "react-icons/tb";
+import {  TbBrandGoogleAnalytics } from "react-icons/tb";
 
 let OrdersNav = [
   { path: "/dashboard/orders", name: "All Orders", active: null },
@@ -314,8 +308,13 @@ let ActiveOption = [
   { name: "Public", _id: "true" },
   { name: "Private", _id: "false" },
 ];
-
+let Origin=[
+  {name:"Bangladesh",_id:"bangladesh"},
+  {name:"China",_id:"china"},
+  {name:"Thailand ",_id:"thailand "},
+]
 export {
+  Origin,
   SideMenuItem,
   orderHistory,
   tableDb,
