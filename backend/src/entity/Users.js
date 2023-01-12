@@ -4,11 +4,14 @@ const TABLE = "users";
 
 const Create = async (req) => {
   const { email, password, name } = req.body;
+
   try {
-    if (!email || !password || !name) {
+    if (email && password && name) {
       const newUser = await db.Create({ table: TABLE, reqBody: req.body });
       const token = await newUser.generateToken();
-      return { newUser, token };
+      return {  newUser, token, cookie: "set" };
+    }else{
+      throw new Error("Something went wrong.");
     }
   } catch (error) {
     throw new Error("Something went wrong.");
@@ -25,6 +28,7 @@ const logIn = async (req) => {
       table: TABLE,
       reqBody: { body: { email: req.body.email } },
     });
+    if(!loginProfile.isAdmin[0]!=="user") return { status: 401, reason: "Incorrect username or password" };
     if (!loginProfile)
       return { status: 401, reason: "Incorrect username or password" };
     const isValid = await loginProfile.checkPassword(req.body.password);

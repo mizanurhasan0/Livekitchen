@@ -8,23 +8,21 @@ const Create = async (req) => {
   // const { name, images, icon } = req.body;
   //  console.log(req)
   try {
-   
-      const images = CheckImageSize(req);
-      // console.log(images)
-      if (images.check) {
-        const newInstance = await db.Create({
-          table: TABLE,
-          reqBody:  { ...req.body, images: images.images },
-        });
-        if (newInstance.status === 400) {
-          DeleteImages(req);
-        }
-        // console.log(newInstance)
-        return { newInstance };
-      } else {
-        return { error: "Image size not more than 1MB" };
+    const images = CheckImageSize(req);
+    // console.log(images)
+    if (images.check) {
+      const newInstance = await db.Create({
+        table: TABLE,
+        reqBody: { ...req.body, images: images.images },
+      });
+      if (newInstance.status === 400) {
+        DeleteImages(req);
       }
-    
+      // console.log(newInstance)
+      return { newInstance };
+    } else {
+      return { error: "Image size not more than 1MB" };
+    }
   } catch (error) {
     throw new Error("Something went wrong.");
   }
@@ -49,7 +47,10 @@ const update = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
     // this here would be a condition from files uploaded or not using req
-    DeleteImages(req, TABLE);
+    if (req.files.length !== 0) {
+      DeleteImages(req, TABLE);
+    }
+    
     const newCate = await db.update({
       table: TABLE,
       reqBody: { findBy: { _id: req.params.id }, body: req.body },

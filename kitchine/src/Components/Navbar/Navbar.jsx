@@ -9,11 +9,13 @@ import { avater } from "../../Assets/Index";
 import UserCtx from "../../Context/UserCtx";
 import "./navbar.css";
 import UseRequest from "../../Hooks/UseRequest";
+import { useShoppingCart } from "../../Context/Shopping/ShoppingCartProvider";
 
 const Navbar = () => {
   let [open, setOpen] = useState(false);
   let [login, setLogin] = useState(false);
   const { carts,user,setUser,setCarts,setUserUpdate } = UserCtx();
+  const {cartQuantity}=useShoppingCart();
   const navigate = useNavigate();
   const req = UseRequest();
   //
@@ -75,7 +77,7 @@ const Navbar = () => {
               >
                 <AiOutlineShopping className="w-7 h-7" />
                 <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-semibold rounded-full">
-                  {carts?.products ? carts?.products?.length : 0}
+                  {cartQuantity || 0}
                 </div>
               </li>
             )}

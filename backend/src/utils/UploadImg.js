@@ -5,12 +5,11 @@ const UPLOAD_FOLDER = "./images/";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-  if(req.url.replace("/","")==="products"){
-
-    cb(null, UPLOAD_FOLDER+"products/");
-  }else if(req.url.replace("/","")==="category"){
-    cb(null, UPLOAD_FOLDER+"category/");
-  }
+    if (req.url.replace("/", "") === "products") {
+      cb(null, UPLOAD_FOLDER + "products/");
+    } else if (req.url.replace("/", "") === "category") {
+      cb(null, UPLOAD_FOLDER + "category/");
+    }
   },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname);
@@ -28,15 +27,18 @@ const storage = multer.diskStorage({
 
 var Uploadimages = multer({
   storage: storage,
- fileFilter:(req,file,cb)=>{
-    if(file.fieldname==="img"){
-        if(file.mimetype==="image/png"|| file.mimetype==="image/jpg"||file.mimetype==="image/jpeg"){
-            cb(null,true)
-        }else{
-            cb(new Error("only jpeg,png and jpg!! "))
-        }
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === "img") {
+      if (
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/jpg" ||
+        file.mimetype === "image/jpeg"
+      ) {
+        cb(null, true);
+      } else {
+        cb(new Error("only jpeg,png and jpg!! "));
+      }
     }
- },
- 
+  },
 });
 module.exports = Uploadimages;

@@ -36,6 +36,34 @@ export default function AddCategory({ onClick = () => {}, itemId = 0 }) {
         formData.append("img", images[0]);
         formData.append("name", data.name);
         formData.append("isActive", data.isActive);
+        // Request
+        reqF({
+          uri: "category",
+          method: "POST",
+          data: formData,
+        }).then((res) => {
+          if (res.newInstance) {
+            AlertToster("Add Category!", "success");
+            reset();
+            setImages([]);
+            onClick();
+          } else {
+            AlertToster("Something went wrong", "error");
+          }
+        });
+      }else{
+        // 
+        let formData = new FormData();
+        if(images.length===0){
+          formData.append("name", data.name);
+          formData.append("isActive", data.isActive);
+        }else{
+          formData.append("img", images[0]);
+          formData.append("name", data.name);
+          formData.append("isActive", data.isActive);
+        }
+      
+        // Request
         reqF({
           uri: "category",
           method: "POST",
@@ -96,7 +124,7 @@ export default function AddCategory({ onClick = () => {}, itemId = 0 }) {
                 child={"close"}
                 onClick={onClick}
               />
-              <Btn cStyle={"w-full "} child={"Save"} type={"submit"} />
+              <Btn cStyle={"w-full "} child={itemId===0?"Save":"Update"} type={"submit"} />
             </div>
           </div>
         </form>

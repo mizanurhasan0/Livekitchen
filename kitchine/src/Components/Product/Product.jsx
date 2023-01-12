@@ -1,11 +1,27 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useShoppingCart } from "../../Context/Shopping/ShoppingCartProvider";
+import UserCtx from "../../Context/UserCtx";
 import Btn from "../Shares/Btn";
+import AlertToster from "../Shares/Toastify/AlertToster";
 
 export default function Product({ cardInfo={} }) {
+  const {user}=UserCtx();
+  const {increaseCartQuantity}=useShoppingCart();
+
   const navigate = useNavigate();
-  console.log(cardInfo)
+
+  // 
+  const onAddToCart=()=>{
+      if(user){
+        increaseCartQuantity();
+        AlertToster("Add your product!","success")
+      }else{
+        AlertToster("Frist login your account!","warning")
+      }
+  }
+ 
   return (
     <div className=" bg-white text-gray-700 relative shadow-lg hover:shadow-xl overflow-hidden text-center rounded-md">
       {/* New arrival icons */}
@@ -37,6 +53,7 @@ export default function Product({ cardInfo={} }) {
             Add to card
           </span>
         }
+        onClick={onAddToCart}
       />
     </div>
   );

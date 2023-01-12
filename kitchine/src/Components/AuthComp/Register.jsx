@@ -6,25 +6,26 @@ import UseRequest from "../../Hooks/UseRequest";
 import Btn from "../Shares/Btn";
 import Input from "../Shares/Input";
 import TextArea from "../Shares/TextArea";
+import AlertToster from "../Shares/Toastify/AlertToster";
 
 export default function Register() {
   // Declieration
   const { register, handleSubmit } = useForm();
-  const { user, setUser, setUserUpdate } = UserCtx();
+  const {  setUser, setUserUpdate } = UserCtx();
   const req = UseRequest();
   const navigate = useNavigate();
 
   const onRegister = (data) => {
-    // req({ uri: "login", method: "POST", data: data }).then((res) => {
-    //   if (res.status === 200) {
-    //     setUserUpdate((v) => (v === false ? true : false));
-    //     setUser(res.loginProfile);
-    //     AlertToster("Success", "success");
-    //     navigate("/dashboard");
-    //   } else {
-    //     AlertToster("Something went wrong", "error");
-    //   }
-    // });
+    req({ uri: "user", method: "POST", data: data }).then((res) => {
+      if (res.newUser) {
+        setUserUpdate((v) => (v === false ? true : false));
+        setUser(res.newUser);
+        AlertToster("Success", "success");
+        navigate("/");
+      } else {
+        AlertToster("Something went wrong", "error");
+      }
+    });
   };
 
   return (
@@ -53,13 +54,7 @@ export default function Register() {
         <div className="mb-4">
           <Input label={"Contact Number"} register={{ ...register("phone") }} />
         </div>
-        <div className="mb-4">
-          <Input
-            label={"Password"}
-            type="password"
-            register={{ ...register("password") }}
-          />
-        </div>
+       
         <div className="mb-4">
           <TextArea
             label={"Current Address"}

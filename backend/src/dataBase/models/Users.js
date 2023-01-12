@@ -52,18 +52,18 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-userSchema.methods.toJSON = function () {
-  const user = this;
-  const userObject = user.toObject();
-  userObject.id = userObject._id;
-  delete userObject._id;
-  delete userObject.__v;
-  delete userObject.tokens;
-  delete userObject.createdAt;
-  delete userObject.updatedAt;
-  delete userObject.password;
-  return userObject;
-};
+// userSchema.methods.toJSON = function () {
+//   const user = this;
+//   const userObject = user.toObject();
+//   userObject.id = userObject._id;
+//   delete userObject._id;
+//   delete userObject.__v;
+//   delete userObject.tokens;
+//   delete userObject.createdAt;
+//   delete userObject.updatedAt;
+//   delete userObject.password;
+//   return userObject;
+// };
 userSchema.methods.generateToken = async function () {
   const token = jwt.sign({ _id: this._id.toString() }, process.env.SECRET_KEY);
   this.tokens = this.tokens.concat({ token });

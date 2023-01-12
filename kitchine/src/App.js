@@ -1,6 +1,8 @@
+import { ToastContainer } from "react-toastify";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import RoutingCon from "./Layout/Routing/RoutingCon";
+import "react-toastify/dist/ReactToastify.css";
 // import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         appId="676573577384398"
       /> */}
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
