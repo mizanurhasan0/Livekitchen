@@ -5,11 +5,10 @@ const USERS = "users";
 
 const Create = async (req) => {
   const { productId, quantity } = req.body;
-
   try {
     let user = await db.findOne({
       table: TABLE,
-      reqBody: { body: { userId: req.user.id, isActive: true } },
+      reqBody: { body: { userId: req.user._id, isActive: true } },
     });
     if (user) {
       //cart exists for user
@@ -31,7 +30,8 @@ const Create = async (req) => {
       const newCart = await db.Create({
         table: TABLE,
         reqBody: {
-          userId: "63919b50601b520cac5b77ef",
+          userId: req.user._id,
+          products: { productId, quantity }
         },
       });
 
@@ -47,14 +47,15 @@ const remove = async (req) => {
   try {
     if (!req.params.id) return { status: 401, reason: "Bad request" };
 
-    const newInstance = await db.update({
+    const newInstance = await db.findOne({
       table: TABLE,
-      reqBody: {
-        findBy: { _id: req.params.id },
-        body: { isActive: false },
-      },
+      reqBody: { body: { userId: req.user._id, isActive: true } },
     });
+
+    newInstance.products = newInstance?.products.filter(item => item.productId.toString() !== req.params.id.toString());
     if (!newInstance) return { status: 404, reason: "User not found." };
+    await db.save(newInstance);
+
     return { status: 200, newInstance };
   } catch (err) {
     console.log(err);
@@ -84,15 +85,15 @@ const getOne = async (req) => {
       table: TABLE,
       reqBody: {
         body: {
-          userId: req.user.id,
+          userId: req?.user?._id,
           isActive: true,
         },
-       
+
       },
-      options: { populate: { path: "products.productId",select:"name description images brand price countInStock" } }
+      options: { populate: { path: "products.productId", select: "name description images brand price countInStock" } }
     });
-    if (!newInstance) return { status: 404, reason: "No data found" };
-    return  {newInstance} ;
+    if (!newInstance) return { status: 401, reason: "No data found" };
+    return { status: 201, newInstance };
   } catch (err) {
     console.log(err)
     throw new Error("Something went wrong");

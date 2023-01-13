@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { createContext } from "react";
 import UseRequest from "../../Hooks/UseRequest";
 import { useCookies } from "react-cookie";
+import { useShoppingCart } from "../Shopping/ShoppingCartProvider";
 
 export const User = createContext();
 
@@ -12,10 +13,11 @@ export default function UserProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
-  const [carts, setCarts] = useState(false);
+  // const [carts, setCarts] = useState(false);
   const [cookies] = useCookies();
 
   const request = UseRequest();
+  // fetch user
   const fetchUser = () => {
     setIsLoading(true);
     try {
@@ -42,17 +44,26 @@ export default function UserProvider({ children }) {
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }
-  const getCarts = async () => {
-    await request({ uri: "cart", method: "GET" })
-      .then((res) => setCarts(res.newInstance))
-      .catch((err) => console.log(err));
-  };
+  // const getCarts = async () => {
+  //   try {
+  //     await request({ uri: "carts", method: "GET" })
+  //       .then((res) => {
+  //         console.log(res.status)
+  //         res.status === 401 && setCarts(false)
+  //         res.status === 201 && setCarts(res.newInstance)
+  //       })
+  //       .catch((err) => console.log(err));
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+
+  // };
 
   useEffect(() => {
     getCategory();
     getProducts();
     if (cookies.auth) {
-      getCarts();
+      // getCarts();
     }
   }, []);
 
@@ -60,11 +71,10 @@ export default function UserProvider({ children }) {
     if (cookies.auth) {
       try {
         fetchUser();
-        getCarts();
       } catch (error) {
         console.log(error)
       }
-    
+
     }
   }, [userUpdate]);
   // 
@@ -78,8 +88,8 @@ export default function UserProvider({ children }) {
         setUserUpdate,
         category,
         products,
-        carts,
-        setCarts,
+        // carts,
+        // setCarts,
       }}
     >
       {children}

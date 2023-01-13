@@ -10,15 +10,16 @@ import Btn from "../Shares/Btn";
 import Input from "../Shares/Input";
 import AlertToster from "../Shares/Toastify/AlertToster";
 import Register from "./Register";
+import { useShoppingCart } from "../../Context/Shopping/ShoppingCartProvider";
 
 export default function Login() {
   // Declieration
   const { register, handleSubmit } = useForm();
   const { user, setUser, setUserUpdate } = UserCtx();
+  const { setCartReload } = useShoppingCart();
   const req = UseRequest();
   const navigate = useNavigate();
   const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
   const [reg, setReg] = useState(false);
   // Function
   useEffect(() => {
@@ -28,9 +29,10 @@ export default function Login() {
   const login = (data) => {
     req({ uri: "login", method: "POST", data: data }).then((res) => {
       if (res.status === 200) {
+        AlertToster("Success", "success");
         setUser(res.loginProfile);
         setUserUpdate((v) => (v === false ? true : false));
-        AlertToster("Success", "success");
+        setCartReload((reload) => (reload === false ? true : false));
         navigate("/");
       } else {
         AlertToster("Something went wrong", "error");

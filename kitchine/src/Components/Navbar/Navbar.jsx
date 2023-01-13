@@ -14,8 +14,8 @@ import { useShoppingCart } from "../../Context/Shopping/ShoppingCartProvider";
 const Navbar = () => {
   let [open, setOpen] = useState(false);
   let [login, setLogin] = useState(false);
-  const { carts,user,setUser,setCarts,setUserUpdate } = UserCtx();
-  const {cartQuantity}=useShoppingCart();
+  const { carts, user, setUser, setUserUpdate } = UserCtx();
+  const { cartQuantity } = useShoppingCart();
   const navigate = useNavigate();
   const req = UseRequest();
   //
@@ -23,8 +23,7 @@ const Navbar = () => {
     req({ uri: "logout", method: "GET" }).then((res) => {
       if (res.status === 200) {
         setUser(null);
-        setCarts(false);
-        setUserUpdate(v=>v===false?true:false)
+        setUserUpdate(v => v === false ? true : false)
       }
     });
   };
@@ -50,9 +49,8 @@ const Navbar = () => {
             )}
           </div>
           <ul
-            className={`${
-              open ? "top-20" : "top-[-490px]"
-            }  md:flex md:items-center md:pb-0 md:w-auto md:z-auto
+            className={`${open ? "top-20" : "top-[-490px]"
+              }  md:flex md:items-center md:pb-0 md:w-auto md:z-auto
           md:static
           pb-12 absolute bg-primary z-[-1] left-0 w-full pl-8 transition-all duration-500 ease-in`}
           >
@@ -76,8 +74,8 @@ const Navbar = () => {
                 className=" cursor-pointer relative md:ml-8 md:my-0 md:py-4 xl:text-xl my-4 pr-2  "
               >
                 <AiOutlineShopping className="w-7 h-7" />
-                <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-semibold rounded-full">
-                  {cartQuantity || 0}
+                <div className="w-5 h-5 bg-txt absolute top-2 right-0 text-primary flex items-center justify-center text-sm font-Roboto font-semibold rounded-full">
+                  {cartQuantity | 0}
                 </div>
               </li>
             )}
@@ -108,7 +106,7 @@ const Navbar = () => {
                   </ul>
                 </div>
               ) : (
-                <Btn onClick={()=>navigate("/login")}
+                <Btn onClick={() => navigate("/login")}
                   child={"Login"}
                   className="bg-txt text-primary px-3 rounded-full
                 uppercase box-border shadow-xl hover:font-semibold duration-300 "

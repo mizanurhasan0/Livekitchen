@@ -9,8 +9,8 @@ const Create = async (req) => {
     if (email && password && name) {
       const newUser = await db.Create({ table: TABLE, reqBody: req.body });
       const token = await newUser.generateToken();
-      return {  newUser, token, cookie: "set" };
-    }else{
+      return { newUser, token, cookie: "set" };
+    } else {
       throw new Error("Something went wrong.");
     }
   } catch (error) {
@@ -28,7 +28,7 @@ const logIn = async (req) => {
       table: TABLE,
       reqBody: { body: { email: req.body.email } },
     });
-    if(!loginProfile.isAdmin[0]!=="user") return { status: 401, reason: "Incorrect username or password" };
+    if (loginProfile.isAdmin[0] !== "user") return { status: 401, reason: "Incorrect username or password" };
     if (!loginProfile)
       return { status: 401, reason: "Incorrect username or password" };
     const isValid = await loginProfile.checkPassword(req.body.password);
@@ -53,11 +53,11 @@ const AdminlogIn = async (req) => {
       table: TABLE,
       reqBody: { body: { email: req.body.email } },
     });
-    
+
     if (!loginProfile)
       return { status: 401, reason: "Incorrect username or password" };
-      
-    if(loginProfile.isAdmin[0]!=="admin") return { status: 401, reason: "Incorrect username or password" };
+
+    if (loginProfile.isAdmin[0] !== "admin") return { status: 401, reason: "Incorrect username or password" };
 
     const isValid = await loginProfile.checkPassword(req.body.password);
     if (!isValid)
@@ -146,7 +146,7 @@ const loadUser = async (req) => {
       table: TABLE,
       reqBody: { body: { _id: req.user.id } },
     });
-   
+
     if (!userProfile) return { status: 400, reason: "Invalid request" };
     return { userProfile };
   } catch (err) {
